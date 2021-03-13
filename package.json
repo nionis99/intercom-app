@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ./app --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "format": "prettier --write \"./app/**/*.+(js|jsx|ts|tsx|json|css|md)\""
   },
   "dependencies": {
     "@hookform/resolvers": "^1.3.5",
