@@ -3,26 +3,26 @@
  * This contains all the color config for the application
  */
 
-import { DefaultTheme, DarkTheme } from "@react-navigation/native";
+import {DefaultTheme, DarkTheme} from '@react-navigation/native';
 
-import { ThemeType, ThemeVariantType, StaticColorsType } from "./types";
+import {ThemeType, ThemeVariantType, StaticColorsType} from './types';
 
 export const ThemeVariant: ThemeVariantType = {
-  light: "light",
-  dark: "dark",
+  light: 'light',
+  dark: 'dark',
 };
 
 export const StaticColors: StaticColorsType = {
-  primary: "#70BEA1",
-  secondary: "rgb(185, 195, 215)",
-  white: "#FFFFFF",
-  black: "#000000",
-  grey: "#2A3639",
-  darkGrey: "rgb(109, 109, 102)",
-  midGrey: "rgb(112, 112, 112)",
-  lightGrey: "rgb(242, 242, 242)",
-  blue: "rgb(0, 122, 255)",
-  dark: "rgb(43, 46, 52)",
+  primary: '#70BEA1',
+  secondary: 'rgb(185, 195, 215)',
+  white: '#FFFFFF',
+  black: '#000000',
+  grey: '#2A3639',
+  darkGrey: 'rgb(109, 109, 102)',
+  midGrey: 'rgb(112, 112, 112)',
+  lightGrey: 'rgb(242, 242, 242)',
+  blue: 'rgb(0, 122, 255)',
+  dark: 'rgb(43, 46, 52)',
   primaryA: (alpha) => `'rgba(82, 173, 128, ${alpha})'`,
   secondaryA: (alpha) => `'rgba(185, 195, 215, ${alpha})'`,
   dangerA: (alpha) => `'rgba(222, 28, 34, ${alpha})'`,
@@ -30,37 +30,37 @@ export const StaticColors: StaticColorsType = {
   whiteA: (alpha) => `'rgba(255, 255, 255, ${alpha})'`,
   midGreyA: (alpha = 0.5) => `'rgba(127, 127, 127, ${alpha})'`,
   lightGreyA: (alpha = 0.33) => `'rgba(171, 171, 171, ${alpha})'`,
-  success: "rgb(143, 209, 128)",
-  danger: "#DA6579",
-  warning: "#ffa500",
-  transparent: "transparent",
-  headerButton: "rgb(82, 173, 128)",
-  description: "",
+  success: 'rgb(143, 209, 128)',
+  danger: '#DA6579',
+  warning: '#ffa500',
+  transparent: 'transparent',
+  headerButton: 'rgb(82, 173, 128)',
+  description: '',
   // only for now while colors are not ready
-  lightGreen: "#98CDB2",
-  greyBorder: "rgba(229, 230, 230, 0.2)",
-  secondaryGreen: "#D6ECE2",
-  primaryGreenDark: "#39795A",
+  lightGreen: '#98CDB2',
+  greyBorder: 'rgba(229, 230, 230, 0.2)',
+  secondaryGreen: '#D6ECE2',
+  primaryGreenDark: '#39795A',
   // only while all colors are not defined
-  greyColor: "#2A3639",
+  greyColor: '#2A3639',
   borderGreyA: (alpha = 1) => `'rgba(229,230,230, ${alpha})'`,
-  badgeGrey: "#50595C",
-  borderColor: "#EFEFEF",
-  greyBackground: "rgb(247, 247, 247)",
-  secondaryGrey: "#50595C",
-  borderGrey: "#E5E6E6",
-  supportSuccess: "#008556",
-  semiWhiteBackground: "#F7F7F7",
-  inputFocusedBorder: "#52AD80",
-  invalidForm: "#DE1C22",
-  disabledInputPlaceholder: "#9A9FA0",
+  badgeGrey: '#50595C',
+  borderColor: '#EFEFEF',
+  greyBackground: 'rgb(247, 247, 247)',
+  secondaryGrey: '#50595C',
+  borderGrey: '#E5E6E6',
+  supportSuccess: '#008556',
+  semiWhiteBackground: '#F7F7F7',
+  inputFocusedBorder: '#52AD80',
+  invalidForm: '#DE1C22',
+  disabledInputPlaceholder: '#9A9FA0',
 };
 
 export const Theme: {
   [key: string]: ThemeType;
 } = {
   light: {
-    type: "light",
+    type: 'light',
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
@@ -75,7 +75,7 @@ export const Theme: {
     },
   },
   dark: {
-    type: "dark",
+    type: 'dark',
     ...DarkTheme,
     colors: {
       ...DarkTheme.colors,

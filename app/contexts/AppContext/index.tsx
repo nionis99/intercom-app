@@ -1,18 +1,12 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import * as Sentry from "@sentry/react-native";
-import { useTranslation } from "react-i18next";
-import { useColorScheme } from "react-native";
+import React, {createContext, useCallback, useContext, useEffect, useState} from 'react';
+import * as Sentry from '@sentry/react-native';
+import {useTranslation} from 'react-i18next';
+import {useColorScheme} from 'react-native';
 
-import { Theme } from "#utils/theme";
-import { ThemeType } from "#utils/theme/types";
-import { getToken, saveAuthToken } from "#utils/storage";
-import LoadingView from "#components/LoadingView";
+import {Theme} from '#utils/theme';
+import {ThemeType} from '#utils/theme/types';
+import {getToken, saveAuthToken} from '#utils/storage';
+import LoadingView from '#components/LoadingView';
 
 type AppContextType = {
   theme: ThemeType;
@@ -25,8 +19,8 @@ type AppContextType = {
 
 export const AppContext = createContext({} as AppContextType);
 
-export const AppContextProvider = (props: { children: React.ReactNode }) => {
-  const { t } = useTranslation();
+export const AppContextProvider = (props: {children: React.ReactNode}) => {
+  const {t} = useTranslation();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [authToken, setAuthToken] = useState<string>();
 
@@ -42,7 +36,7 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
   }, [prepareAuthToken]);
 
   const scheme = useColorScheme();
-  const chosenTheme = scheme === "dark" ? Theme.dark : Theme.light;
+  const chosenTheme = scheme === 'dark' ? Theme.dark : Theme.light;
 
   const authTokenSave = (tokenToSave: string | undefined) => {
     setAuthToken(tokenToSave);
@@ -50,7 +44,7 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   if (isLoading) {
-    return <LoadingView title={t("authorizing")} />;
+    return <LoadingView title={t('authorizing')} />;
   }
 
   const logout = () => {
@@ -67,8 +61,7 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
         authToken,
         authTokenSave,
         logout,
-      }}
-    >
+      }}>
       {props.children}
     </AppContext.Provider>
   );
@@ -77,7 +70,7 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
 export function useAppState() {
   const context = useContext(AppContext);
   if (!context) {
-    throw new Error("useAppState must be used within the AppStateProvider");
+    throw new Error('useAppState must be used within the AppStateProvider');
   }
   return context;
 }

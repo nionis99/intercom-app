@@ -1,4 +1,4 @@
-import { Theme } from "@react-navigation/native";
+import {Theme} from '@react-navigation/native';
 
 export type StaticColorsType = {
   primary: string;
@@ -67,11 +67,11 @@ export interface ThemeType extends Theme {
 }
 
 export enum OrientationType {
-  PORTRAIT = "portrait",
-  PORTRAIT_UPSIDE_DOWN = "portrait-upside-down",
-  LANDSCAPE = "landscape",
-  LANDSCAPE_LEFT = "landscape-left",
-  LANDSCAPE_RIGHT = "landscape-right",
+  PORTRAIT = 'portrait',
+  PORTRAIT_UPSIDE_DOWN = 'portrait-upside-down',
+  LANDSCAPE = 'landscape',
+  LANDSCAPE_LEFT = 'landscape-left',
+  LANDSCAPE_RIGHT = 'landscape-right',
 }
 
 export const supportedOrientations = Object.values(OrientationType);

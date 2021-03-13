@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 // import { StyleSheet } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigatorScreenParams } from "@react-navigation/native";
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigatorScreenParams} from '@react-navigation/native';
 
-import BottomTabs, { BottomTabParamList } from "./BottomTabs";
+import BottomTabs, {BottomTabParamList} from './BottomTabs';
 // import LogoTitle from "#components/LogoTitle";
 // import LanguagePicker from "#components/Buttons/LanguagePicker";
 
@@ -20,13 +20,8 @@ export function AuthorizedStack() {
       initialRouteName="BottomTabs"
       screenOptions={{
         headerBackTitleVisible: false,
-      }}
-    >
-      <Stack.Screen
-        name="BottomTabs"
-        options={{ headerShown: false }}
-        component={BottomTabs}
-      />
+      }}>
+      <Stack.Screen name="BottomTabs" options={{headerShown: false}} component={BottomTabs} />
       {/*<Stack.Screen*/}
       {/*  name="Profile"*/}
       {/*  options={{*/}

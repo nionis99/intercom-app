@@ -1,37 +1,29 @@
-import React, { ReactNode } from "react";
-import {
-  TouchableOpacity,
-  StyleSheet,
-  ViewStyle,
-  TextStyle,
-  View,
-  ActivityIndicator,
-  StyleProp,
-} from "react-native";
-import { IconProps } from "react-native-vector-icons/Icon";
-import { useTranslation } from "react-i18next";
+import React, {ReactNode} from 'react';
+import {TouchableOpacity, StyleSheet, ViewStyle, TextStyle, View, ActivityIndicator, StyleProp} from 'react-native';
+import {IconProps} from 'react-native-vector-icons/Icon';
+import {useTranslation} from 'react-i18next';
 
-import Text, { TextTypes } from "#components/Text";
-import { ThemeColors } from "#utils/theme/types";
-import { DEFAULT_BORDER_RADIUS } from "#utils/theme";
-import useColoredStyles from "#hooks/useColoredStyles";
+import Text, {TextTypes} from '#components/Text';
+import {ThemeColors} from '#utils/theme/types';
+import {DEFAULT_BORDER_RADIUS} from '#utils/theme';
+import useColoredStyles from '#hooks/useColoredStyles';
 
 export enum ButtonType {
-  DEFAULT = "default",
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-  GREY = "grey",
-  WHITE = "white",
-  DANGER = "danger",
-  GREEN = "green",
-  SECONDARY_GREEN = "secondaryGreen",
-  TEXT = "TEXT",
+  DEFAULT = 'default',
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  GREY = 'grey',
+  WHITE = 'white',
+  DANGER = 'danger',
+  GREEN = 'green',
+  SECONDARY_GREEN = 'secondaryGreen',
+  TEXT = 'TEXT',
 }
 
 export enum ButtonSize {
-  SMALL = "SMALL",
-  MEDIUM = "MEDIUM",
-  LARGE = "LARGE",
+  SMALL = 'SMALL',
+  MEDIUM = 'MEDIUM',
+  LARGE = 'LARGE',
 }
 
 type IconType = (props: IconProps) => JSX.Element;
@@ -62,7 +54,7 @@ function Button({
   lean = false,
 }: Props) {
   const defaultStyles = useColoredStyles(coloredDefaultStyles);
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const styles = useColoredStyles(typeStyles)[type];
 
   return (
@@ -76,15 +68,10 @@ function Button({
         sizeStyles[size],
         !lean && defaultStyles.grow,
         style,
-      ]}
-    >
+      ]}>
       {Icon &&
         (isLoading ? (
-          <ActivityIndicator
-            size={16}
-            color={styles.text.color}
-            style={defaultStyles.icon}
-          />
+          <ActivityIndicator size={16} color={styles.text.color} style={defaultStyles.icon} />
         ) : (
           <View style={children ? defaultStyles.icon : undefined}>
             <Icon name="circle" size={16} color={styles.text.color} />
@@ -92,7 +79,7 @@ function Button({
         ))}
       <View>
         <Text type={textType[size]} style={[styles.text, textStyle]}>
-          {isLoading ? t("loading") : children}
+          {isLoading ? t('loading') : children}
         </Text>
       </View>
     </TouchableOpacity>
@@ -123,10 +110,10 @@ const textType = {
 const coloredDefaultStyles = (themeColors: ThemeColors) =>
   StyleSheet.create({
     button: {
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-      alignSelf: "stretch",
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignSelf: 'stretch',
       backgroundColor: themeColors.white,
       borderRadius: DEFAULT_BORDER_RADIUS,
     },
@@ -229,10 +216,10 @@ const typeStyles = (themeColors: ThemeColors) => ({
   }),
   [ButtonType.TEXT]: StyleSheet.create({
     button: {
-      backgroundColor: "transparent",
+      backgroundColor: 'transparent',
     },
     buttonDisabled: {
-      backgroundColor: "transparent",
+      backgroundColor: 'transparent',
     },
     text: {
       color: themeColors.text,

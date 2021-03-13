@@ -1,18 +1,18 @@
-import { initReactI18next } from "react-i18next";
-import i18n, { ResourceLanguage } from "i18next";
-import en from "./translations/en.json";
-import lt from "./translations/lt.json";
-import ru from "./translations/ru.json";
+import {initReactI18next} from 'react-i18next';
+import i18n, {ResourceLanguage} from 'i18next';
+import en from './translations/en.json';
+import lt from './translations/lt.json';
+import ru from './translations/ru.json';
 
-type Translations = { [key: string]: ResourceLanguage };
+type Translations = {[key: string]: ResourceLanguage};
 
-const translations: Translations = { en, lt, ru };
+const translations: Translations = {en, lt, ru};
 
 const availableLanguages = Object.keys(translations);
 
-let lng = "en";
+let lng = 'en';
 if (!lng || !Object.prototype.hasOwnProperty.call(translations, lng)) {
-  lng = "en";
+  lng = 'en';
 }
 
 i18n.use(initReactI18next).init({
@@ -25,4 +25,4 @@ i18n.use(initReactI18next).init({
 });
 
 export default i18n;
-export { translations, availableLanguages };
+export {translations, availableLanguages};

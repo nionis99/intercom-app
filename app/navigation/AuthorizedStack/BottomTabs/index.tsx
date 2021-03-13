@@ -1,12 +1,12 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { NavigatorScreenParams } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { useTranslation } from "react-i18next";
-import Icon from "react-native-vector-icons/Feather";
-import { AuthorizedStackParamList } from "..";
-import getIconName from "#utils/helpers/getIconName";
+import React from 'react';
+import {StyleSheet} from 'react-native';
+import {NavigatorScreenParams} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {useTranslation} from 'react-i18next';
+import Icon from 'react-native-vector-icons/Feather';
+import {AuthorizedStackParamList} from '..';
+import getIconName from '#utils/helpers/getIconName';
 
 export type BottomTabParamList = {
   Profile?: NavigatorScreenParams<any>;
@@ -17,9 +17,9 @@ interface Props {
   navigation: StackNavigationProp<AuthorizedStackParamList>;
 }
 
-function BottomTabs({ navigation }: Props) {
+function BottomTabs({navigation}: Props) {
   const Tab = createBottomTabNavigator<BottomTabParamList>();
-  const { t } = useTranslation();
+  const {t} = useTranslation();
 
   return (
     <Tab.Navigator
@@ -29,13 +29,12 @@ function BottomTabs({ navigation }: Props) {
         tabStyle: styles.button,
         labelStyle: styles.label,
       }}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+      screenOptions={({route}) => ({
+        tabBarIcon: ({color, size}) => {
           const iconName = getIconName(route);
           return <Icon name={iconName} size={size} color={color} />;
         },
-      })}
-    >
+      })}>
       {/*<Tab.Screen*/}
       {/*  name="Profile"*/}
       {/*  options={{ title: t("profile") }}*/}
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 10,
     lineHeight: 15,
-    fontFamily: "Poppins-Medium",
+    fontFamily: 'Poppins-Medium',
   },
 });
 

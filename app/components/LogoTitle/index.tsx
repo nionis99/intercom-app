@@ -1,6 +1,6 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import Logo from "#assets/images/logo.svg";
+import React from 'react';
+import {StyleSheet} from 'react-native';
+import Logo from '#assets/images/logo.svg';
 
 const LogoTitle = () => <Logo style={styles.root} />;
 

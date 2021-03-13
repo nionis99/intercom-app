@@ -1,4 +1,4 @@
-package com.intercomapp;
+package com.intercom;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "intercomapp";
+    return "intercom";
   }
 }

@@ -1,7 +1,7 @@
-import Storage from "react-native-storage";
-import AsyncStorage from "@react-native-community/async-storage";
+import Storage from 'react-native-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 
-const prefix = "meedio";
+const prefix = 'meedio';
 
 const storage = new Storage({
   size: 1000,

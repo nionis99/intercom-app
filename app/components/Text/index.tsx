@@ -1,24 +1,24 @@
-import React, { ReactNode } from "react";
-import { StyleSheet, Text as NativeText, TextProps } from "react-native";
-import { useTheme } from "#utils/theme";
+import React, {ReactNode} from 'react';
+import {StyleSheet, Text as NativeText, TextProps} from 'react-native';
+import {useTheme} from '#utils/theme';
 
 export enum FontWeight {
-  LIGHT = "LIGHT",
-  NORMAL = "NORMAL",
-  MEDIUM = "MEDIUM",
-  SEMI_BOLD = "SEMI_BOLD",
-  BOLD = "BOLD",
+  LIGHT = 'LIGHT',
+  NORMAL = 'NORMAL',
+  MEDIUM = 'MEDIUM',
+  SEMI_BOLD = 'SEMI_BOLD',
+  BOLD = 'BOLD',
 }
 
 export enum TextTypes {
-  H1 = "H1",
-  H2 = "H2",
-  H3 = "H3",
-  H4 = "H4",
-  SUBTITLE = "SUBTITLE",
-  BODY_LARGE = "BODY_LARGE",
-  BODY_MEDIUM = "BODY_MEDIUM",
-  BODY_SMALL = "BODY_SMALL",
+  H1 = 'H1',
+  H2 = 'H2',
+  H3 = 'H3',
+  H4 = 'H4',
+  SUBTITLE = 'SUBTITLE',
+  BODY_LARGE = 'BODY_LARGE',
+  BODY_MEDIUM = 'BODY_MEDIUM',
+  BODY_SMALL = 'BODY_SMALL',
 }
 
 interface Props extends TextProps {
@@ -29,30 +29,21 @@ interface Props extends TextProps {
   children?: ReactNode;
 }
 
-export const Text = ({
-  color,
-  numberOfLines,
-  style,
-  weight,
-  type = TextTypes.BODY_SMALL,
-  children,
-  ...rest
-}: Props) => {
-  const { colors } = useTheme();
+export const Text = ({color, numberOfLines, style, weight, type = TextTypes.BODY_SMALL, children, ...rest}: Props) => {
+  const {colors} = useTheme();
 
   return (
     <NativeText
       allowFontScaling={false}
       style={[
-        { color: color || colors.text },
+        {color: color || colors.text},
         styles.default,
         textTypesStyles[type],
         weight ? styles[weight] : undefined,
         style,
       ]}
       numberOfLines={numberOfLines}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </NativeText>
   );
@@ -62,19 +53,19 @@ export default Text;
 
 const styles = StyleSheet.create({
   [FontWeight.LIGHT]: {
-    fontFamily: "Poppins-Light",
+    fontFamily: 'Poppins-Light',
   },
   [FontWeight.NORMAL]: {
-    fontFamily: "Poppins-Regular",
+    fontFamily: 'Poppins-Regular',
   },
   [FontWeight.MEDIUM]: {
-    fontFamily: "Poppins-Medium",
+    fontFamily: 'Poppins-Medium',
   },
   [FontWeight.SEMI_BOLD]: {
-    fontFamily: "Poppins-SemiBold",
+    fontFamily: 'Poppins-SemiBold',
   },
   [FontWeight.BOLD]: {
-    fontFamily: "Poppins-Bold",
+    fontFamily: 'Poppins-Bold',
   },
   default: {
     includeFontPadding: false,
