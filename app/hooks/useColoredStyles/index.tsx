@@ -1,5 +1,5 @@
 import { useTheme } from "#utils/theme";
-import { ThemeColors } from "#theme/types";
+import { ThemeColors } from "#utils/theme/types";
 import { useMemo } from "react";
 
 function useColoredStyles<T, A, U extends A[]>(
