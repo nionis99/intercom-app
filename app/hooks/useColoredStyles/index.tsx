@@ -8,9 +8,7 @@ function useColoredStyles<T, A, U extends A[]>(
 ): T {
   const { colors } = useTheme();
 
-  const styles = useMemo(() => style(colors, ...args), [colors, style, args]);
-
-  return styles;
+  return useMemo(() => style(colors, ...args), [colors, style, args]);
 }
 
 export default useColoredStyles;
