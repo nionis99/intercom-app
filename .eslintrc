@@ -1,0 +1,39 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "@react-native-community",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "@typescript-eslint/no-use-before-define": "off",
+    "no-empty": [
+      "error",
+      {
+        "allowEmptyCatch": true
+      }
+    ],
+    "object-shorthand": 1,
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          "object": false
+        },
+        "extendDefaults": true
+      }
+    ],
+    "curly": ["error", "multi-line"]
+  }
+}
