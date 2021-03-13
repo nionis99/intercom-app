@@ -54,6 +54,9 @@
     "paths": {
       "*": [
         "./*"
+      ],
+      "#*": [
+        "./app/*"
       ]
     },
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
@@ -75,7 +78,7 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "include": [
-    "custom.d.ts",
+    "app/types/custom.d.ts",
     "env.d.ts",
     "app/**/*"
   ],
