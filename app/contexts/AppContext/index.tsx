@@ -9,8 +9,8 @@ import * as Sentry from "@sentry/react-native";
 import { useTranslation } from "react-i18next";
 import { useColorScheme } from "react-native";
 
-import { Theme } from "#theme";
-import { ThemeType } from "#theme/types";
+import { Theme } from "#utils/theme";
+import { ThemeType } from "#utils/theme/types";
 import { getToken, saveAuthToken } from "#utils/storage";
 import LoadingView from "#components/LoadingView";
 
