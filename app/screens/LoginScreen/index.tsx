@@ -1,64 +1,136 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {useTranslation} from 'react-i18next';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { StyleSheet, View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useTranslation } from 'react-i18next';
+import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
-import Button, {ButtonSize, ButtonType} from '#components/Buttons';
-import Text, {TextTypes} from '#components/Text';
-import {UnauthorizedStackParamList} from '#navigation/UnauthorizedStack';
+import Button, { ButtonSize, ButtonType } from '#components/Buttons';
+import Text, { TextTypes } from '#components/Text';
+import Divider from '#components/Divider';
+import Input from '#components/Input';
+import { ThemeColors } from '#utils/theme/types';
+import useColoredStyles from 'app/hooks/useColoredStyles';
+import { useAppState } from '#contexts/AppContext';
 
-type ScreenNavigationProp = StackNavigationProp<UnauthorizedStackParamList, 'Login'>;
+export interface LoginFormInputs {
+  username: string;
+  password: string;
+}
 
-type Props = {
-  navigation: ScreenNavigationProp;
-};
+function LoginScreen() {
+  const { t } = useTranslation();
+  const styles = useColoredStyles(coloredStyles);
+  const { authTokenSave } = useAppState();
 
-function LoginScreen({navigation}: Props) {
-  const {t} = useTranslation();
+  const loginSchema = yup.object().shape({
+    username: yup.string().required(t('name_required_error')),
+    password: yup.string().required(t('password_required_error')),
+  });
+
+  const { control, errors, handleSubmit } = useForm<LoginFormInputs>({
+    mode: 'all',
+    resolver: yupResolver(loginSchema),
+  });
+
+  const handleLoginSubmit = (data: LoginFormInputs) => {
+    console.log(data);
+    authTokenSave(data.username);
+  };
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.root}>
       <View style={styles.formContainer}>
-        <Text type={TextTypes.H1} style={styles.welcome}>
-          {t('Login')}
+        <Text type={TextTypes.H3} style={styles.welcome}>
+          {t('please_log_in')}
         </Text>
-        <Text type={TextTypes.BODY_SMALL} style={styles.explain}>
-          {t('confirm_your_number_explanation')}
+        <Text type={TextTypes.H4} style={styles.firstLabel}>
+          {t('username')}
         </Text>
-        <Button type={ButtonType.PRIMARY} size={ButtonSize.LARGE} onPress={() => null} style={styles.button}>
-          {t('continue')}
+        <Controller
+          control={control}
+          name="username"
+          defaultValue=""
+          render={({ onChange, value }) => (
+            <Input
+              placeholder={t('username')}
+              value={value}
+              onChange={({ nativeEvent }) => onChange(nativeEvent.text)}
+            />
+          )}
+        />
+        {errors.username?.message && (
+          <Text style={styles.invalidInput}>{errors.username?.message}</Text>
+        )}
+        <Text type={TextTypes.H4} style={styles.label}>
+          {t('password')}
+        </Text>
+        <Controller
+          control={control}
+          name="password"
+          defaultValue=""
+          render={({ onChange, value }) => (
+            <Input
+              placeholder={t('password')}
+              value={value}
+              secureTextEntry={true}
+              onChange={({ nativeEvent }) => onChange(nativeEvent.text)}
+            />
+          )}
+        />
+        {errors.password?.message && (
+          <Text style={styles.invalidInput}>{errors.password?.message}</Text>
+        )}
+        <Button
+          type={ButtonType.PRIMARY}
+          size={ButtonSize.LARGE}
+          onPress={handleSubmit(handleLoginSubmit)}
+          style={styles.button}
+        >
+          {t('login')}
         </Button>
-        <Text style={styles.description}>{t('make_sure_you_can_receive_sms_explanation')}</Text>
+        <Divider />
       </View>
     </KeyboardAwareScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  formContainer: {
-    width: '80%',
-    maxWidth: 500,
-  },
-  welcome: {
-    marginTop: 40,
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  explain: {
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  button: {
-    marginTop: 10,
-  },
-  description: {
-    marginTop: 20,
-  },
-});
+const coloredStyles = (themeColors: ThemeColors) =>
+  StyleSheet.create({
+    root: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    formContainer: {
+      width: '80%',
+      maxWidth: 500,
+    },
+    welcome: {
+      marginTop: 40,
+      marginBottom: 20,
+      textAlign: 'center',
+    },
+    explain: {
+      marginBottom: 20,
+      textAlign: 'center',
+    },
+    invalidInput: {
+      color: themeColors.danger,
+    },
+    firstLabel: {
+      marginBottom: 5,
+    },
+    label: {
+      marginTop: 10,
+      marginBottom: 5,
+    },
+    button: {
+      marginTop: 15,
+    },
+    description: {
+      marginTop: 20,
+    },
+  });
 
 export default LoginScreen;

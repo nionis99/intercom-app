@@ -1,16 +1,16 @@
 import React from 'react';
 import Flag from 'react-native-flags-typescript';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {StyleProp, ViewStyle} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { StyleProp, ViewStyle } from 'react-native';
 
-import {useLanguageContext} from '#contexts/LanguageContext';
+import { useLanguageContext } from '#contexts/LanguageContext';
 
 interface Props {
   style?: StyleProp<ViewStyle>;
 }
 
-const LanguagePicker = ({style}: Props) => {
-  const {setIsChangeLanguageModalVisible, currentLanguageCode} = useLanguageContext();
+const LanguagePicker = ({ style }: Props) => {
+  const { setIsChangeLanguageModalVisible, currentLanguageCode } = useLanguageContext();
 
   return (
     <TouchableOpacity style={style} onPress={() => setIsChangeLanguageModalVisible(true)}>

@@ -1,13 +1,13 @@
-import React, {Component, ReactNode} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import React, { Component, ReactNode } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import RNRestart from 'react-native-restart';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import * as Sentry from '@sentry/react-native';
-import {withTranslation} from 'react-i18next';
-import {TFunction} from 'i18next';
+import { withTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 
-import {StaticColors} from '#utils/theme/colors';
-import Text, {TextTypes} from '#components/Text';
+import { StaticColors } from '#utils/theme/colors';
+import Text, { TextTypes } from '#components/Text';
 
 interface Props {
   children: ReactNode;
@@ -28,7 +28,7 @@ class ErrorBoundary extends Component<Props, StateTypes> {
   }
 
   static getDerivedStateFromError() {
-    return {hasError: true};
+    return { hasError: true };
   }
 
   render() {
@@ -36,15 +36,15 @@ class ErrorBoundary extends Component<Props, StateTypes> {
       return (
         <View style={styles.root}>
           <FontAwesomeIcon name="question-circle" size={60} color={StaticColors.primary} />
-          <Text type={TextTypes.H1}>{this.props.t('oops_an_error_occurred')}</Text>
+          <Text type={TextTypes.H1}>{this.props.t('oops_error')}</Text>
           <Text type={TextTypes.BODY_MEDIUM} style={styles.text}>
-            {this.props.t('an_error_is_reported_to_us')}
+            {this.props.t('reported_to_us')}
             {'\n'}
-            {this.props.t('press_the_button_below_to_restart_the_application')}
+            {this.props.t('restart_the_application')}
           </Text>
           <TouchableOpacity style={styles.button} onPress={() => RNRestart.Restart()}>
             <Text type={TextTypes.H4} style={styles.buttonText}>
-              {this.props.t('restart_application')}
+              {this.props.t('restart_application_button')}
             </Text>
           </TouchableOpacity>
         </View>
@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: StaticColors.primary,
-    borderRadius: 8,
+    borderRadius: 2,
     paddingVertical: 12,
     paddingHorizontal: 24,
   },

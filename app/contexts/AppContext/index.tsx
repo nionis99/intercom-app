@@ -1,11 +1,11 @@
-import React, {createContext, useCallback, useContext, useEffect, useState} from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import * as Sentry from '@sentry/react-native';
-import {useTranslation} from 'react-i18next';
-import {useColorScheme} from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useColorScheme } from 'react-native';
 
-import {Theme} from '#utils/theme';
-import {ThemeType} from '#utils/theme/types';
-import {getToken, saveAuthToken} from '#utils/storage';
+import { Theme } from '#utils/theme';
+import { ThemeType } from '#utils/theme/types';
+import { getToken, saveAuthToken } from '#utils/storage';
 import LoadingView from '#components/LoadingView';
 
 type AppContextType = {
@@ -19,8 +19,8 @@ type AppContextType = {
 
 export const AppContext = createContext({} as AppContextType);
 
-export const AppContextProvider = (props: {children: React.ReactNode}) => {
-  const {t} = useTranslation();
+export const AppContextProvider = (props: { children: React.ReactNode }) => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [authToken, setAuthToken] = useState<string>();
 
@@ -61,7 +61,8 @@ export const AppContextProvider = (props: {children: React.ReactNode}) => {
         authToken,
         authTokenSave,
         logout,
-      }}>
+      }}
+    >
       {props.children}
     </AppContext.Provider>
   );

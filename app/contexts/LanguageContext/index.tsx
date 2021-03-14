@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {createContext, useState} from 'react';
+import React, { useContext } from 'react';
+import { createContext, useState } from 'react';
 
 import i18n from '#utils/i18n';
 
@@ -18,7 +18,7 @@ type LanguageContextType = {
 
 export const LanguageContext = createContext({} as LanguageContextType);
 
-export const LanguageProvider = ({children}: Props) => {
+export const LanguageProvider = ({ children }: Props) => {
   const [isChangeLanguageModalVisible, setIsChangeLanguageModalVisible] = useState(false);
 
   const changeLanguage = (language: string) => i18n.changeLanguage(language);
@@ -37,7 +37,8 @@ export const LanguageProvider = ({children}: Props) => {
         getLanguage,
         currentLanguageCode,
         getLanguageFromFlagCode,
-      }}>
+      }}
+    >
       {children}
     </LanguageContext.Provider>
   );

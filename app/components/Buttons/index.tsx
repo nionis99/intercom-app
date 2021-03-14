@@ -1,11 +1,19 @@
-import React, {ReactNode} from 'react';
-import {TouchableOpacity, StyleSheet, ViewStyle, TextStyle, View, ActivityIndicator, StyleProp} from 'react-native';
-import {IconProps} from 'react-native-vector-icons/Icon';
-import {useTranslation} from 'react-i18next';
+import React, { ReactNode } from 'react';
+import {
+  TouchableOpacity,
+  StyleSheet,
+  ViewStyle,
+  TextStyle,
+  View,
+  ActivityIndicator,
+  StyleProp,
+} from 'react-native';
+import { IconProps } from 'react-native-vector-icons/Icon';
+import { useTranslation } from 'react-i18next';
 
-import Text, {TextTypes} from '#components/Text';
-import {ThemeColors} from '#utils/theme/types';
-import {DEFAULT_BORDER_RADIUS} from '#utils/theme';
+import Text, { TextTypes } from '#components/Text';
+import { ThemeColors } from '#utils/theme/types';
+import { DEFAULT_BORDER_RADIUS } from '#utils/theme';
 import useColoredStyles from '#hooks/useColoredStyles';
 
 export enum ButtonType {
@@ -54,7 +62,7 @@ function Button({
   lean = false,
 }: Props) {
   const defaultStyles = useColoredStyles(coloredDefaultStyles);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const styles = useColoredStyles(typeStyles)[type];
 
   return (
@@ -68,7 +76,8 @@ function Button({
         sizeStyles[size],
         !lean && defaultStyles.grow,
         style,
-      ]}>
+      ]}
+    >
       {Icon &&
         (isLoading ? (
           <ActivityIndicator size={16} color={styles.text.color} style={defaultStyles.icon} />

@@ -1,12 +1,12 @@
 import React from 'react';
-import {useTheme} from '#utils/theme';
-import {View, StyleSheet, ActivityIndicator} from 'react-native';
+import { useTheme } from '#utils/theme';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import i18n from '#utils/i18n';
 
 import Text from '#components/Text';
 
-function LoadingView({title = i18n.t('loading')}) {
-  const {colors} = useTheme();
+function LoadingView({ title = i18n.t('loading') }) {
+  const { colors } = useTheme();
 
   return (
     <View style={styles.root}>

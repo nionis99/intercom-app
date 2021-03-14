@@ -1,6 +1,6 @@
-import React, {ReactNode} from 'react';
-import {StyleSheet, Text as NativeText, TextProps} from 'react-native';
-import {useTheme} from '#utils/theme';
+import React, { ReactNode } from 'react';
+import { StyleSheet, Text as NativeText, TextProps } from 'react-native';
+import { useTheme } from '#utils/theme';
 
 export enum FontWeight {
   LIGHT = 'LIGHT',
@@ -29,21 +29,30 @@ interface Props extends TextProps {
   children?: ReactNode;
 }
 
-export const Text = ({color, numberOfLines, style, weight, type = TextTypes.BODY_SMALL, children, ...rest}: Props) => {
-  const {colors} = useTheme();
+export const Text = ({
+  color,
+  numberOfLines,
+  style,
+  weight,
+  type = TextTypes.BODY_SMALL,
+  children,
+  ...rest
+}: Props) => {
+  const { colors } = useTheme();
 
   return (
     <NativeText
       allowFontScaling={false}
       style={[
-        {color: color || colors.text},
+        { color: color || colors.text },
         styles.default,
         textTypesStyles[type],
         weight ? styles[weight] : undefined,
         style,
       ]}
       numberOfLines={numberOfLines}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </NativeText>
   );

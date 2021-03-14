@@ -3,9 +3,9 @@
  * This contains all the color config for the application
  */
 
-import {DefaultTheme, DarkTheme} from '@react-navigation/native';
+import { DefaultTheme, DarkTheme } from '@react-navigation/native';
 
-import {ThemeType, ThemeVariantType, StaticColorsType} from './types';
+import { ThemeType, ThemeVariantType, StaticColorsType } from './types';
 
 export const ThemeVariant: ThemeVariantType = {
   light: 'light',
@@ -13,8 +13,8 @@ export const ThemeVariant: ThemeVariantType = {
 };
 
 export const StaticColors: StaticColorsType = {
-  primary: '#70BEA1',
-  secondary: 'rgb(185, 195, 215)',
+  primary: '#1c9cc4',
+  secondary: '#f8941c',
   white: '#FFFFFF',
   black: '#000000',
   grey: '#2A3639',
@@ -31,7 +31,7 @@ export const StaticColors: StaticColorsType = {
   midGreyA: (alpha = 0.5) => `'rgba(127, 127, 127, ${alpha})'`,
   lightGreyA: (alpha = 0.33) => `'rgba(171, 171, 171, ${alpha})'`,
   success: 'rgb(143, 209, 128)',
-  danger: '#DA6579',
+  danger: '#ff0000',
   warning: '#ffa500',
   transparent: 'transparent',
   headerButton: 'rgb(82, 173, 128)',

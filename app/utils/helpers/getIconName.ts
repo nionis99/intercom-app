@@ -1,4 +1,4 @@
-import {Route} from '@react-navigation/native';
+import { Route } from '@react-navigation/native';
 
 const getIconName = (route: Route<'Profile' | 'Members'>) => {
   let iconName;

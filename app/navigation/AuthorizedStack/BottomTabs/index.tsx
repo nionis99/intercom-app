@@ -1,25 +1,21 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {NavigatorScreenParams} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {useTranslation} from 'react-i18next';
+import { StyleSheet } from 'react-native';
+import { NavigatorScreenParams } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useTranslation } from 'react-i18next';
 import Icon from 'react-native-vector-icons/Feather';
-import {AuthorizedStackParamList} from '..';
+import MembersStack, { MembersStackParamList } from '../MembersStack';
+import ProfileStack, { ProfileStackParamList } from '../ProfileStack';
 import getIconName from '#utils/helpers/getIconName';
 
 export type BottomTabParamList = {
-  Profile?: NavigatorScreenParams<any>;
-  Members?: NavigatorScreenParams<any>;
+  Profile?: NavigatorScreenParams<ProfileStackParamList>;
+  Members?: NavigatorScreenParams<MembersStackParamList>;
 };
 
-interface Props {
-  navigation: StackNavigationProp<AuthorizedStackParamList>;
-}
-
-function BottomTabs({navigation}: Props) {
+function BottomTabs() {
   const Tab = createBottomTabNavigator<BottomTabParamList>();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Tab.Navigator
@@ -29,29 +25,22 @@ function BottomTabs({navigation}: Props) {
         tabStyle: styles.button,
         labelStyle: styles.label,
       }}
-      screenOptions={({route}) => ({
-        tabBarIcon: ({color, size}) => {
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color, size }) => {
           const iconName = getIconName(route);
           return <Icon name={iconName} size={size} color={color} />;
         },
-      })}>
-      {/*<Tab.Screen*/}
-      {/*  name="Profile"*/}
-      {/*  options={{ title: t("profile") }}*/}
-      {/*  component={ProfileStack}*/}
-      {/*/>*/}
-      {/*<Tab.Screen*/}
-      {/*  name="Members"*/}
-      {/*  options={{ title: t("members") }}*/}
-      {/*  component={MembersStack}*/}
-      {/*/>*/}
+      })}
+    >
+      <Tab.Screen name="Profile" options={{ title: t('profile') }} component={ProfileStack} />
+      <Tab.Screen name="Members" options={{ title: t('members') }} component={MembersStack} />
     </Tab.Navigator>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    paddingTop: 7,
+    paddingTop: 5,
     paddingBottom: 3,
   },
   label: {
