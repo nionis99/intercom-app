@@ -36,7 +36,7 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
   }, [prepareAuthToken]);
 
   const scheme = useColorScheme();
-  const chosenTheme = scheme === 'dark' ? Theme.dark : Theme.light;
+  const chosenTheme = scheme === 'dark' ? Theme.dark : Theme.dark;
 
   const authTokenSave = (tokenToSave: string | undefined) => {
     setAuthToken(tokenToSave);

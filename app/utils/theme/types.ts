@@ -41,6 +41,7 @@ export type StaticColorsType = {
   inputFocusedBorder: string;
   invalidForm: string;
   disabledInputPlaceholder: string;
+  background: string;
 };
 
 export interface ThemeColors extends StaticColorsType {

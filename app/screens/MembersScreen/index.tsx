@@ -23,7 +23,7 @@ function MembersScreen() {
 const coloredStyles = (themeColors: ThemeColors) =>
   StyleSheet.create({
     root: {
-      backgroundColor: themeColors.white,
+      backgroundColor: themeColors.background,
     },
     scroll: {
       width: '100%',

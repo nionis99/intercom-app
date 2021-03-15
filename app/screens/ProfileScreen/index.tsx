@@ -3,10 +3,12 @@ import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { useAppState } from '#contexts/AppContext';
-import Button, { ButtonType } from '#components/Buttons';
-import Text, { TextTypes } from '#components/Text';
-import LoadingView from '#components/LoadingView';
 import useColoredStyles from '#hooks/useColoredStyles';
+import Button, { ButtonType } from '#components/Buttons';
+import ProfileForm from '#components/Forms/ProfileForm';
+import LoadingView from '#components/LoadingView';
+import Avatar from 'react-native-elements/dist/avatar/Avatar';
+import avatarSrc from '#assets/images/user.png';
 import { ThemeColors } from '#utils/theme/types';
 
 function ProfileScreen() {
@@ -28,11 +30,13 @@ function ProfileScreen() {
   return (
     <SafeAreaView style={styles.root}>
       <ScrollView style={styles.scroll} contentContainerStyle={styles.contentContainer}>
-        <Text type={TextTypes.H3} style={styles.userText}>
-          {t('profile')}
-        </Text>
+        <Avatar size="xlarge" source={avatarSrc} containerStyle={styles.avatar} />
+        <ProfileForm user={{ username: 'Ivan', email: 'ivan@gmail.com' }} />
         <View style={styles.buttons}>
-          <Button style={styles.button} type={ButtonType.PRIMARY} onPress={logoutUser}>
+          <Button style={styles.button} onPress={() => null}>
+            {t('change_password')}
+          </Button>
+          <Button style={styles.button} type={ButtonType.DANGER} onPress={logoutUser}>
             {t('log_out')}
           </Button>
         </View>
@@ -44,7 +48,7 @@ function ProfileScreen() {
 const coloredStyles = (themeColors: ThemeColors) =>
   StyleSheet.create({
     root: {
-      backgroundColor: themeColors.white,
+      backgroundColor: themeColors.background,
     },
     scroll: {
       width: '100%',
@@ -54,10 +58,6 @@ const coloredStyles = (themeColors: ThemeColors) =>
     contentContainer: {
       alignItems: 'center',
       justifyContent: 'space-between',
-    },
-    userText: {
-      marginTop: 24,
-      marginBottom: 16,
     },
     buttons: {
       width: '60%',
@@ -69,6 +69,10 @@ const coloredStyles = (themeColors: ThemeColors) =>
     },
     button: {
       marginTop: 8,
+    },
+    avatar: {
+      marginTop: 20,
+      marginBottom: 15,
     },
   });
 

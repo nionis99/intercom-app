@@ -23,8 +23,8 @@ export const LightThemeColors: StaticColorsType = {
   lightGrey: 'rgb(242, 242, 242)',
   blue: 'rgb(0, 122, 255)',
   dark: 'rgb(43, 46, 52)',
-  primaryA: (alpha) => `'rgba(82, 173, 128, ${alpha})'`,
-  secondaryA: (alpha) => `'rgba(185, 195, 215, ${alpha})'`,
+  primaryA: (alpha) => `'rgba(28, 156, 196, ${alpha})'`,
+  secondaryA: (alpha) => `'rgba(245,145,25, ${alpha})'`,
   dangerA: (alpha) => `'rgba(222, 28, 34, ${alpha})'`,
   blackA: (alpha) => `'rgba(0, 0, 0, ${alpha})'`,
   whiteA: (alpha) => `'rgba(255, 255, 255, ${alpha})'`,
@@ -54,6 +54,7 @@ export const LightThemeColors: StaticColorsType = {
   inputFocusedBorder: '#52AD80',
   invalidForm: '#DE1C22',
   disabledInputPlaceholder: '#9A9FA0',
+  background: '#FFFFFF',
 };
 
 export const DarkThemeColors: StaticColorsType = {
@@ -67,8 +68,8 @@ export const DarkThemeColors: StaticColorsType = {
   lightGrey: 'rgb(242, 242, 242)',
   blue: 'rgb(0, 122, 255)',
   dark: 'rgb(43, 46, 52)',
-  primaryA: (alpha) => `'rgba(82, 173, 128, ${alpha})'`,
-  secondaryA: (alpha) => `'rgba(185, 195, 215, ${alpha})'`,
+  primaryA: (alpha) => `'rgba(28, 156, 196, ${alpha})'`,
+  secondaryA: (alpha) => `'rgba(245,145,25, ${alpha})'`,
   dangerA: (alpha) => `'rgba(222, 28, 34, ${alpha})'`,
   blackA: (alpha) => `'rgba(0, 0, 0, ${alpha})'`,
   whiteA: (alpha) => `'rgba(255, 255, 255, ${alpha})'`,
@@ -98,6 +99,7 @@ export const DarkThemeColors: StaticColorsType = {
   inputFocusedBorder: '#52AD80',
   invalidForm: '#DE1C22',
   disabledInputPlaceholder: '#9A9FA0',
+  background: '#000000',
 };
 
 export const Theme: {

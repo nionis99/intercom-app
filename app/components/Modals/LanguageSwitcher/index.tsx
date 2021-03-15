@@ -72,9 +72,9 @@ const coloredStyles = (themeColors = {} as ThemeColors) =>
       position: 'absolute',
       width: '100%',
       bottom: 0,
-      backgroundColor: themeColors.white,
+      backgroundColor: themeColors.background,
       height: '50%',
-      shadowColor: themeColors.black,
+      shadowColor: themeColors.lightGrey,
       shadowOffset: {
         width: 0,
         height: 1,

@@ -96,7 +96,7 @@ function Input({
 export const inputSizeStyles = StyleSheet.create({
   [InputSize.SMALL]: {
     paddingTop: 14,
-    paddingBottom: 14,
+    paddingBottom: 12,
     paddingHorizontal: 16,
     ...textTypesStyles[TextTypes.BODY_SMALL],
   },
@@ -119,11 +119,11 @@ export const coloredDefaultStyles = (themeColors: ThemeColors, isDisabled: boole
     },
     input: {
       flex: 1,
-      color: themeColors.greyColor,
+      color: themeColors.text,
       borderRadius: DEFAULT_BORDER_RADIUS,
     },
     disabled: {
-      color: themeColors.midGreyA(),
+      color: themeColors.text,
     },
   });
 

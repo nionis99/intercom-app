@@ -15,6 +15,9 @@
     "log_out": "Log out",
     "select_language": "Select language",
     "profile": "Profile",
-    "members": "Members"
+    "members": "Family members",
+    "email": "Email",
+    "edit": "Edit",
+    "change_password": "Change password"
   }
 }

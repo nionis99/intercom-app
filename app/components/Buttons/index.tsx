@@ -154,7 +154,7 @@ const typeStyles = (themeColors: ThemeColors) => ({
       backgroundColor: themeColors.primaryA(0.35),
     },
     text: {
-      color: themeColors.white,
+      color: themeColors.text,
     },
   }),
   [ButtonType.DANGER]: StyleSheet.create({
@@ -176,7 +176,7 @@ const typeStyles = (themeColors: ThemeColors) => ({
       backgroundColor: themeColors.secondaryA(0.35),
     },
     text: {
-      color: themeColors.white,
+      color: themeColors.text,
     },
   }),
   [ButtonType.GREY]: StyleSheet.create({

@@ -15,6 +15,9 @@
     "log_out": "Atsijungti",
     "select_language": "Select language",
     "profile": "Profilis",
-    "members": "Nariai"
+    "members": "Šeimos nariai",
+    "email": "El. paštas",
+    "edit": "Redaguoti",
+    "change_password": "Keisti slaptažodį"
   }
 }
