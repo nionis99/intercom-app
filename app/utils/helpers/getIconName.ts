@@ -4,7 +4,7 @@ const getIconName = (route: Route<'Profile' | 'Members'>) => {
   let iconName;
 
   if (route.name === 'Profile') {
-    iconName = 'settings';
+    iconName = 'user-circle';
   } else if (route.name === 'Members') {
     iconName = 'users';
   } else {
