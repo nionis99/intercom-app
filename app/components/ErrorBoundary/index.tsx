@@ -6,7 +6,7 @@ import * as Sentry from '@sentry/react-native';
 import { withTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 
-import { StaticColors } from '#utils/theme/colors';
+import { LightThemeColors } from '#utils/theme/colors';
 import Text, { TextTypes } from '#components/Text';
 
 interface Props {
@@ -35,7 +35,7 @@ class ErrorBoundary extends Component<Props, StateTypes> {
     if (this.state.hasError) {
       return (
         <View style={styles.root}>
-          <FontAwesomeIcon name="question-circle" size={60} color={StaticColors.primary} />
+          <FontAwesomeIcon name="question-circle" size={60} color={LightThemeColors.primary} />
           <Text type={TextTypes.H1}>{this.props.t('oops_error')}</Text>
           <Text type={TextTypes.BODY_MEDIUM} style={styles.text}>
             {this.props.t('reported_to_us')}
@@ -66,19 +66,19 @@ export const styles = StyleSheet.create({
     zIndex: 2,
     height: '100%',
     width: '100%',
-    backgroundColor: StaticColors.white,
+    backgroundColor: LightThemeColors.white,
   },
   text: {
     marginBottom: 30,
     textAlign: 'center',
   },
   button: {
-    backgroundColor: StaticColors.primary,
+    backgroundColor: LightThemeColors.primary,
     borderRadius: 2,
     paddingVertical: 12,
     paddingHorizontal: 24,
   },
   buttonText: {
-    color: StaticColors.white,
+    color: LightThemeColors.white,
   },
 });
