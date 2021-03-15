@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useTranslation } from 'react-i18next';
-import ProfileScreen from '#screens/ProfileScreen';
+import MembersScreen from '#screens/MembersScreen';
 
 export type MembersStackParamList = {
   Members: undefined;
@@ -17,7 +17,7 @@ function MembersStack() {
         headerBackTitleVisible: false,
       }}
     >
-      <Stack.Screen name="Members" options={{ title: t('members') }} component={ProfileScreen} />
+      <Stack.Screen name="Members" options={{ title: t('members') }} component={MembersScreen} />
     </Stack.Navigator>
   );
 }
