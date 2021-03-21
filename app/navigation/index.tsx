@@ -18,11 +18,7 @@ export default function () {
   }, []);
 
   return (
-    <NavigationContainer
-      theme={theme}
-      ref={navigationRef}
-      onReady={() => (isReadyRef.current = true)}
-    >
+    <NavigationContainer theme={theme} ref={navigationRef} onReady={() => (isReadyRef.current = true)}>
       <LanguageProvider>
         {isLoggedIn ? <AuthorizedStack /> : <UnauthorizedStack />}
         <LanguageSwitcherModal />

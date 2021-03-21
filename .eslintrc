@@ -3,21 +3,14 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
   "extends": [
+    "prettier",
     "@react-native-community",
     "eslint:recommended",
-    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "trailingComma": "es5",
-        "singleQuote": true,
-        "printWidth": 100
-      }
-    ],
+    "prettier/prettier": "error",
     "@typescript-eslint/no-use-before-define": "off",
     "no-empty": [
       "error",
