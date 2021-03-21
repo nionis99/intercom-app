@@ -9,7 +9,7 @@ import * as yup from 'yup';
 
 import { useAppState } from '#contexts/AppContext';
 import useColoredStyles from '#hooks/useColoredStyles';
-import Button, { ButtonSize, ButtonType } from '#components/Buttons';
+import Button, { ButtonType } from '#components/Buttons';
 import Text, { TextTypes } from '#components/Text';
 import Divider from '#components/Divider';
 import Input from '#components/Input';
@@ -58,6 +58,7 @@ function LoginScreen() {
             <Input
               placeholder={t('username')}
               value={value}
+              autoCapitalize="none"
               onChange={({ nativeEvent }) => onChange(nativeEvent.text)}
             />
           )}
@@ -82,7 +83,6 @@ function LoginScreen() {
         {!!errors.password?.message && <Text style={styles.invalidInput}>{errors.password.message}</Text>}
         <Button
           type={ButtonType.PRIMARY}
-          size={ButtonSize.LARGE}
           onPress={handleSubmit(handleLoginSubmit)}
           style={styles.button}
           isLoading={loading}

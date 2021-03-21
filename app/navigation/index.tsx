@@ -3,10 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 
 import { useAppState } from '#contexts/AppContext';
+import { LanguageProvider } from '#contexts/LanguageContext';
 import { AuthorizedStack } from '#navigation/AuthorizedStack';
 import { UnauthorizedStack } from '#navigation/UnauthorizedStack';
 import { isReadyRef, navigationRef } from '#navigation/RootNavigation';
-import { LanguageProvider } from '#contexts/LanguageContext';
 import LanguageSwitcherModal from '#components/Modals/LanguageSwitcher';
 
 export default function () {

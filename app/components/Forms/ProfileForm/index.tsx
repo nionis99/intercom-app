@@ -10,7 +10,6 @@ import Button, { ButtonType } from '#components/Buttons';
 import Text, { TextTypes } from '#components/Text';
 import Input from '#components/Input';
 import { ThemeColors } from '#utils/theme/types';
-import { InputSize } from '#components/Input/types';
 
 interface ProfileFormInputs {
   username: string;
@@ -54,7 +53,6 @@ export default function ProfileForm({ user }: Props) {
         render={({ onChange, value }) => (
           <Input
             style={styles.formInput}
-            size={InputSize.SMALL}
             value={value}
             autoCapitalize="none"
             placeholder={t('enter_name')}
@@ -72,7 +70,6 @@ export default function ProfileForm({ user }: Props) {
         render={({ onChange, value }) => (
           <Input
             containerStyle={styles.formInput}
-            size={InputSize.SMALL}
             value={value}
             autoCapitalize="none"
             placeholder={t('enter_email')}

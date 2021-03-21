@@ -1,3 +1,5 @@
+export const DEFAULT_LANGUAGE = 'lt';
+
 export const API = 'http://intercom.ntt.lt/api';
 export const API_VERSION = 'v1';
 export const BACKEND_URL = `${API}/${API_VERSION}`;

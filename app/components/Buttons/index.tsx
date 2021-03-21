@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import { TouchableOpacity, StyleSheet, ViewStyle, TextStyle, View, ActivityIndicator, StyleProp } from 'react-native';
-import { IconProps } from 'react-native-vector-icons/Icon';
 
 import Text, { TextTypes } from '#components/Text';
 import { ThemeColors } from '#utils/theme/types';
@@ -25,8 +24,6 @@ export enum ButtonSize {
   LARGE = 'LARGE',
 }
 
-type IconType = (props: IconProps) => JSX.Element;
-
 interface Props {
   type?: ButtonType;
   size?: ButtonSize;
@@ -34,7 +31,6 @@ interface Props {
   textStyle?: TextStyle;
   disabled?: boolean;
   onPress: () => void;
-  icon?: IconType | typeof ActivityIndicator;
   children?: ReactNode;
   isLoading?: boolean;
   lean?: boolean;
@@ -47,7 +43,6 @@ function Button({
   textStyle,
   disabled = false,
   onPress,
-  icon: Icon,
   children,
   isLoading,
   lean = false,
@@ -62,24 +57,20 @@ function Button({
       style={[
         defaultStyles.button,
         styles.button,
-        disabled && styles.buttonDisabled,
+        disabled ? styles.buttonDisabled : undefined,
         sizeStyles[size],
-        !lean && defaultStyles.grow,
+        !lean ? defaultStyles.grow : undefined,
         style,
       ]}
     >
-      {Icon &&
-        (isLoading ? (
+      <View>
+        {isLoading ? (
           <ActivityIndicator size={16} color={styles.text.color} style={defaultStyles.icon} />
         ) : (
-          <View style={children ? defaultStyles.icon : undefined}>
-            <Icon name="circle" size={16} color={styles.text.color} />
-          </View>
-        ))}
-      <View>
-        <Text type={textType[size]} style={[styles.text, textStyle]}>
-          {isLoading ? <ActivityIndicator size={16} color={styles.text.color} style={defaultStyles.icon} /> : children}
-        </Text>
+          <Text type={textType[size]} style={[styles.text, textStyle]}>
+            {children}
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -109,6 +100,7 @@ const textType = {
 const coloredDefaultStyles = (themeColors: ThemeColors) =>
   StyleSheet.create({
     button: {
+      display: 'flex',
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
@@ -117,6 +109,7 @@ const coloredDefaultStyles = (themeColors: ThemeColors) =>
       borderRadius: DEFAULT_BORDER_RADIUS,
     },
     icon: {
+      display: 'flex',
       paddingRight: 4,
     },
     grow: {

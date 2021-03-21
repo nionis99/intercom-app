@@ -10,9 +10,6 @@ target 'intercom' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
-
-  pod 'RNToasty', :path => '../node_modules/react-native-toasty'
-
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'intercomTests' do
