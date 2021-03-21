@@ -1,7 +1,7 @@
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const prefix = 'meedio';
+const prefix = 'intercom';
 
 const storage = new Storage({
   size: 1000,

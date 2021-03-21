@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useTranslation } from 'react-i18next';
@@ -6,26 +7,30 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
+import { useAppState } from '#contexts/AppContext';
+import useColoredStyles from '#hooks/useColoredStyles';
 import Button, { ButtonSize, ButtonType } from '#components/Buttons';
 import Text, { TextTypes } from '#components/Text';
 import Divider from '#components/Divider';
 import Input from '#components/Input';
+import { login } from '#redux/actions/AuthorizationActions';
 import { ThemeColors } from '#utils/theme/types';
-import useColoredStyles from 'app/hooks/useColoredStyles';
-import { useAppState } from '#contexts/AppContext';
+import { useStateSelector } from '#hooks/useReduxStateSelector';
 
 export interface LoginFormInputs {
-  username: string;
+  login: string;
   password: string;
 }
 
 function LoginScreen() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const styles = useColoredStyles(coloredStyles);
   const { authTokenSave } = useAppState();
+  const { loading } = useStateSelector((state) => state.auth);
 
   const loginSchema = yup.object().shape({
-    username: yup.string().required(t('name_required_error')),
+    login: yup.string().required(t('name_required_error')),
     password: yup.string().required(t('password_required_error')),
   });
 
@@ -34,10 +39,7 @@ function LoginScreen() {
     resolver: yupResolver(loginSchema),
   });
 
-  const handleLoginSubmit = (data: LoginFormInputs) => {
-    console.log(data);
-    authTokenSave(data.username);
-  };
+  const handleLoginSubmit = (data: LoginFormInputs) => dispatch(login(data, authTokenSave));
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.root}>
@@ -50,7 +52,7 @@ function LoginScreen() {
         </Text>
         <Controller
           control={control}
-          name="username"
+          name="login"
           defaultValue=""
           render={({ onChange, value }) => (
             <Input
@@ -60,7 +62,7 @@ function LoginScreen() {
             />
           )}
         />
-        {!!errors.username?.message && <Text style={styles.invalidInput}>{errors.username.message}</Text>}
+        {!!errors.login?.message && <Text style={styles.invalidInput}>{errors.login.message}</Text>}
         <Text type={TextTypes.H4} style={styles.label}>
           {t('password')}
         </Text>
@@ -83,6 +85,7 @@ function LoginScreen() {
           size={ButtonSize.LARGE}
           onPress={handleSubmit(handleLoginSubmit)}
           style={styles.button}
+          isLoading={loading}
         >
           {t('login')}
         </Button>

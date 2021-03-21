@@ -1,5 +1,4 @@
 import React, { createContext, SetStateAction, useCallback, useContext, useEffect, useState } from 'react';
-import * as Sentry from '@sentry/react-native';
 import { useTranslation } from 'react-i18next';
 import { useColorScheme } from 'react-native';
 
@@ -15,7 +14,6 @@ type AppContextType = {
   isLoggedIn: boolean;
   authToken?: string;
   authTokenSave: (token: string) => void;
-  logout: () => void;
 };
 
 export const AppContext = createContext({} as AppContextType);
@@ -49,11 +47,6 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
     return <LoadingView title={t('authorizing')} />;
   }
 
-  const logout = () => {
-    authTokenSave(undefined);
-    Sentry.configureScope((scope) => scope.setUser(null));
-  };
-
   return (
     <AppContext.Provider
       value={{
@@ -63,7 +56,6 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
         isLoggedIn: !!authToken,
         authToken,
         authTokenSave,
-        logout,
       }}
     >
       {props.children}

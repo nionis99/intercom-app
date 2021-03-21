@@ -10,17 +10,17 @@ import ProfileForm from '#components/Forms/ProfileForm';
 import LoadingView from '#components/LoadingView';
 import avatarSrc from '#assets/images/user.png';
 import { ThemeColors } from '#utils/theme/types';
+import { logout } from '#redux/actions/AuthorizationActions';
 
 function ProfileScreen() {
   const { t } = useTranslation();
-  const { logout } = useAppState();
+  const { authTokenSave } = useAppState();
   const styles = useColoredStyles(coloredStyles);
   const [isLogoutLoading, setIsLogoutLoading] = useState<boolean>(false);
 
   const logoutUser = async () => {
     setIsLogoutLoading(true);
-    logout();
-    setIsLogoutLoading(false);
+    await logout(authTokenSave).then(() => setIsLogoutLoading(false));
   };
 
   if (isLogoutLoading) {

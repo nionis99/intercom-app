@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
 
 import { useAppState } from '#contexts/AppContext';
-import { AuthorizedStack } from './AuthorizedStack';
-import { UnauthorizedStack } from './UnauthorizedStack';
-import { isReadyRef, navigationRef } from './RootNavigation';
+import { AuthorizedStack } from '#navigation/AuthorizedStack';
+import { UnauthorizedStack } from '#navigation/UnauthorizedStack';
+import { isReadyRef, navigationRef } from '#navigation/RootNavigation';
 import { LanguageProvider } from '#contexts/LanguageContext';
 import LanguageSwitcherModal from '#components/Modals/LanguageSwitcher';
 
@@ -23,6 +24,7 @@ export default function () {
         {isLoggedIn ? <AuthorizedStack /> : <UnauthorizedStack />}
         <LanguageSwitcherModal />
       </LanguageProvider>
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </NavigationContainer>
   );
 }
