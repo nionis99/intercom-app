@@ -109,7 +109,6 @@ const coloredDefaultStyles = (themeColors: ThemeColors) =>
       borderRadius: DEFAULT_BORDER_RADIUS,
     },
     icon: {
-      display: 'flex',
       paddingRight: 4,
     },
     grow: {
