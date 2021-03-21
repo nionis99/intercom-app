@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React, { createContext, SetStateAction, useCallback, useContext, useEffect, useState } from 'react';
 import * as Sentry from '@sentry/react-native';
 import { useTranslation } from 'react-i18next';
 import { useColorScheme } from 'react-native';
@@ -10,6 +10,7 @@ import LoadingView from '#components/LoadingView';
 
 type AppContextType = {
   theme: ThemeType;
+  setTheme: React.Dispatch<SetStateAction<ThemeType>>;
   isLoading: boolean;
   isLoggedIn: boolean;
   authToken?: string;
@@ -24,6 +25,15 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [authToken, setAuthToken] = useState<string>();
 
+  const scheme = useColorScheme();
+  const chosenTheme = scheme === 'dark' ? Theme.dark : Theme.light;
+  const [theme, setTheme] = useState<ThemeType>(chosenTheme);
+
+  const authTokenSave = (tokenToSave: string | undefined) => {
+    setAuthToken(tokenToSave);
+    saveAuthToken(tokenToSave);
+  };
+
   const prepareAuthToken = useCallback(async () => {
     const foundToken = await getToken();
     if (foundToken) authTokenSave(foundToken);
@@ -34,14 +44,6 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
   useEffect(() => {
     prepareAuthToken();
   }, [prepareAuthToken]);
-
-  const scheme = useColorScheme();
-  const chosenTheme = scheme === 'dark' ? Theme.dark : Theme.light;
-
-  const authTokenSave = (tokenToSave: string | undefined) => {
-    setAuthToken(tokenToSave);
-    saveAuthToken(tokenToSave);
-  };
 
   if (isLoading) {
     return <LoadingView title={t('authorizing')} />;
@@ -55,7 +57,8 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
   return (
     <AppContext.Provider
       value={{
-        theme: chosenTheme,
+        theme,
+        setTheme,
         isLoading,
         isLoggedIn: !!authToken,
         authToken,

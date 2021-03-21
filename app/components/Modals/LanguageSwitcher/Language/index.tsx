@@ -14,11 +14,7 @@ interface Props {
 
 const Language = ({ title, flagCode }: Props) => {
   const { colors } = useTheme();
-  const {
-    changeLanguage,
-    setIsChangeLanguageModalVisible,
-    getLanguageFromFlagCode,
-  } = useLanguageContext();
+  const { changeLanguage, setIsChangeLanguageModalVisible, getLanguageFromFlagCode } = useLanguageContext();
 
   const selectLanguage = () => {
     setIsChangeLanguageModalVisible(false);

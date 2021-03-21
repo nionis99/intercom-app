@@ -1,11 +1,7 @@
 import { Animated, Easing } from 'react-native';
 import { useCallback, useRef } from 'react';
 
-const useColorTransition = (
-  transitionStatement: boolean,
-  initialColor: string,
-  colorTo: string
-) => {
+const useColorTransition = (transitionStatement: boolean, initialColor: string, colorTo: string) => {
   const animatedColorController = useRef(new Animated.Value(0)).current;
 
   const borderColorAnimated = animatedColorController.interpolate({

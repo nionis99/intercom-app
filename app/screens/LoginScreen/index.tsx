@@ -60,9 +60,7 @@ function LoginScreen() {
             />
           )}
         />
-        {errors.username?.message && (
-          <Text style={styles.invalidInput}>{errors.username?.message}</Text>
-        )}
+        {!!errors.username?.message && <Text style={styles.invalidInput}>{errors.username.message}</Text>}
         <Text type={TextTypes.H4} style={styles.label}>
           {t('password')}
         </Text>
@@ -79,9 +77,7 @@ function LoginScreen() {
             />
           )}
         />
-        {errors.password?.message && (
-          <Text style={styles.invalidInput}>{errors.password?.message}</Text>
-        )}
+        {!!errors.password?.message && <Text style={styles.invalidInput}>{errors.password.message}</Text>}
         <Button
           type={ButtonType.PRIMARY}
           size={ButtonSize.LARGE}

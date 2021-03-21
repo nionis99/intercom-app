@@ -70,20 +70,12 @@ function Input({
   };
 
   return (
-    <Animated.View
-      style={[defaultStyles.root, { borderColor: borderColorAnimated }, containerStyle]}
-    >
+    <Animated.View style={[defaultStyles.root, { borderColor: borderColorAnimated }, containerStyle]}>
       <TextInput
         editable={!disabled}
         placeholderTextColor={disabled ? colors.disabledInputPlaceholder : colors.secondaryGrey}
         onSubmitEditing={onSubmitEditing}
-        style={[
-          defaultStyles.input,
-          inputSizeStyles[size],
-          typeStyle.input,
-          style,
-          disabled && defaultStyles.disabled,
-        ]}
+        style={[defaultStyles.input, inputSizeStyles[size], typeStyle.input, style, disabled && defaultStyles.disabled]}
         onFocus={handleFocus}
         onBlur={handleBlur}
         {...rest}
@@ -95,14 +87,14 @@ function Input({
 
 export const inputSizeStyles = StyleSheet.create({
   [InputSize.SMALL]: {
-    paddingTop: 14,
-    paddingBottom: 12,
+    paddingTop: 8,
+    paddingBottom: 8,
     paddingHorizontal: 16,
     ...textTypesStyles[TextTypes.BODY_SMALL],
   },
   [InputSize.MEDIUM]: {
-    paddingTop: 14,
-    paddingBottom: 14,
+    paddingTop: 10,
+    paddingBottom: 10,
     paddingHorizontal: 16,
     ...textTypesStyles[TextTypes.BODY_MEDIUM],
   },

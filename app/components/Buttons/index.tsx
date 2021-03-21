@@ -1,13 +1,5 @@
 import React, { ReactNode } from 'react';
-import {
-  TouchableOpacity,
-  StyleSheet,
-  ViewStyle,
-  TextStyle,
-  View,
-  ActivityIndicator,
-  StyleProp,
-} from 'react-native';
+import { TouchableOpacity, StyleSheet, ViewStyle, TextStyle, View, ActivityIndicator, StyleProp } from 'react-native';
 import { IconProps } from 'react-native-vector-icons/Icon';
 import { useTranslation } from 'react-i18next';
 

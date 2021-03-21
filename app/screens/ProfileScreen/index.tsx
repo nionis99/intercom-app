@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import Avatar from 'react-native-elements/dist/avatar/Avatar';
 
 import { useAppState } from '#contexts/AppContext';
 import useColoredStyles from '#hooks/useColoredStyles';
 import Button, { ButtonType } from '#components/Buttons';
 import ProfileForm from '#components/Forms/ProfileForm';
 import LoadingView from '#components/LoadingView';
-import Avatar from 'react-native-elements/dist/avatar/Avatar';
 import avatarSrc from '#assets/images/user.png';
 import { ThemeColors } from '#utils/theme/types';
 

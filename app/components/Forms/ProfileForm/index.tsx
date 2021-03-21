@@ -18,12 +18,7 @@ interface ProfileFormInputs {
 }
 
 const profileSchema = yup.object().shape({
-  username: yup
-    .string()
-    .min(2, 'your_name_min_length_error')
-    .max(30, 'your_name_max_length_error')
-    .required()
-    .trim(),
+  username: yup.string().min(2, 'your_name_min_length_error').max(30, 'your_name_max_length_error').required().trim(),
   email: yup.string().email('please_enter_valid_email').nullable(),
 });
 
@@ -67,9 +62,7 @@ export default function ProfileForm({ user }: Props) {
           />
         )}
       />
-      {!!errors.username?.message && (
-        <Text style={styles.errorText}>{t(errors.username.message)}</Text>
-      )}
+      {!!errors.username?.message && <Text style={styles.errorText}>{t(errors.username.message)}</Text>}
       <Text type={TextTypes.H4} style={styles.formText}>
         {t('email')}
       </Text>
