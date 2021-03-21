@@ -7,5 +7,4 @@ export const isReadyRef: React.MutableRefObject<boolean | null> = React.createRe
 
 export const getCurrentRoute = () => navigationRef?.current?.getCurrentRoute() || null;
 
-// export const navigate = (name: string, params: object) =>
-//   navigationRef.current?.navigate(name, params);
+export const navigate = (name: string, params: object) => navigationRef.current?.navigate(name, params);
