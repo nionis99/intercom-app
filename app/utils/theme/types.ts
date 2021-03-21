@@ -24,12 +24,9 @@ export type StaticColorsType = {
   transparent: string;
   headerButton: string;
   description: string;
-  // only for now, while colors are not ready
   lightGreen: string;
   greyBackground: string;
   greyBorder: string;
-  secondaryGreen: string;
-  primaryGreenDark: string;
   greyColor: string;
   borderGreyA: (alpha?: number) => string;
   badgeGrey: string;

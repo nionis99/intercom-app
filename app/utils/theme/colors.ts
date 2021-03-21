@@ -36,12 +36,8 @@ export const LightThemeColors: StaticColorsType = {
   transparent: 'transparent',
   headerButton: 'rgb(82, 173, 128)',
   description: '',
-  // only for now while colors are not ready
   lightGreen: '#98CDB2',
   greyBorder: 'rgba(229, 230, 230, 0.2)',
-  secondaryGreen: '#D6ECE2',
-  primaryGreenDark: '#39795A',
-  // only while all colors are not defined
   greyColor: '#2A3639',
   borderGreyA: (alpha = 1) => `'rgba(229,230,230, ${alpha})'`,
   badgeGrey: '#50595C',
@@ -81,12 +77,8 @@ export const DarkThemeColors: StaticColorsType = {
   transparent: 'transparent',
   headerButton: 'rgb(82, 173, 128)',
   description: '',
-  // only for now while colors are not ready
   lightGreen: '#98CDB2',
   greyBorder: 'rgba(229, 230, 230, 0.2)',
-  secondaryGreen: '#D6ECE2',
-  primaryGreenDark: '#39795A',
-  // only while all colors are not defined
   greyColor: '#2A3639',
   borderGreyA: (alpha = 1) => `'rgba(229,230,230, ${alpha})'`,
   badgeGrey: '#50595C',

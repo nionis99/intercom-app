@@ -14,7 +14,6 @@ export enum ButtonType {
   WHITE = 'white',
   DANGER = 'danger',
   GREEN = 'green',
-  SECONDARY_GREEN = 'secondaryGreen',
   TEXT = 'TEXT',
 }
 
@@ -192,17 +191,6 @@ const typeStyles = (themeColors: ThemeColors) => ({
     },
     text: {
       color: themeColors.white,
-    },
-  }),
-  [ButtonType.SECONDARY_GREEN]: StyleSheet.create({
-    button: {
-      backgroundColor: themeColors.secondaryGreen,
-    },
-    buttonDisabled: {
-      backgroundColor: themeColors.lightGrey,
-    },
-    text: {
-      color: themeColors.primary,
     },
   }),
   [ButtonType.TEXT]: StyleSheet.create({
