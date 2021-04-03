@@ -25,22 +25,23 @@ const handleError = (error: AxiosError) => {
     const { status, data: errorMessage } = error.response;
     if (status === 401) return removeAccess();
     else if (status >= 500) return navigate('Server', {});
-    else {
-      Toast.show({
-        type: 'error',
-        text1: 'Error!',
-        text2: errorMessage || undefined,
-        position: 'bottom',
-        autoHide: true,
-        visibilityTime: 2000,
-      });
-    }
-  }
+    else showError(errorMessage);
+  } else showError(error.message);
 };
 
 const removeAccess = async () => {
   await saveAuthToken((null as unknown) as string);
   navigate('Login', {});
 };
+
+const showError = (message: string) =>
+  Toast.show({
+    type: 'error',
+    text1: 'Error!',
+    text2: message || undefined,
+    position: 'bottom',
+    autoHide: true,
+    visibilityTime: 2000,
+  });
 
 export default apiAction;
