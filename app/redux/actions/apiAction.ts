@@ -24,9 +24,9 @@ const handleError = (error: AxiosError) => {
   if (error.response) {
     const { status, data: errorMessage } = error.response;
     if (status === 401) return removeAccess();
-    else if (status >= 500) return navigate('Server', {});
-    else return showError(errorMessage);
-  } else return navigate('Server', {});
+    else if (status >= 500) navigate('Server', {});
+    else showError(errorMessage);
+  } else saveAuthToken((null as unknown) as string).then(() => navigate('Server', {}));
 };
 
 const removeAccess = async () => {
