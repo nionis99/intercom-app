@@ -23,15 +23,15 @@ const apiAction = <D, L, S>(
 const handleError = (error: AxiosError) => {
   if (error.response) {
     const { status, data: errorMessage } = error.response;
-    if (status === 401) return removeAccess();
+    if (status === 401) return removeAccessAndRedirect('Login');
     else if (status >= 500) navigate('Server', {});
     else showError(errorMessage);
-  } else saveAuthToken((null as unknown) as string).then(() => navigate('Server', {}));
+  } else return removeAccessAndRedirect('server');
 };
 
-const removeAccess = async () => {
+const removeAccessAndRedirect = async (redirectRoute: string) => {
   await saveAuthToken((null as unknown) as string);
-  navigate('Login', {});
+  navigate(redirectRoute, {});
 };
 
 const showError = (message?: string) =>
