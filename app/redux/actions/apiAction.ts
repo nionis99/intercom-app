@@ -25,8 +25,8 @@ const handleError = (error: AxiosError) => {
     const { status, data: errorMessage } = error.response;
     if (status === 401) return removeAccess();
     else if (status >= 500) return navigate('Server', {});
-    else showError(errorMessage);
-  } else showError(error.message);
+    else return showError(errorMessage);
+  } else return navigate('Server', {});
 };
 
 const removeAccess = async () => {
@@ -34,11 +34,11 @@ const removeAccess = async () => {
   navigate('Login', {});
 };
 
-const showError = (message: string) =>
+const showError = (message?: string) =>
   Toast.show({
     type: 'error',
     text1: 'Error!',
-    text2: message || undefined,
+    text2: message,
     position: 'bottom',
     autoHide: true,
     visibilityTime: 2000,
