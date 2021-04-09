@@ -1,46 +1,52 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, View } from 'react-native';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useTranslation } from 'react-i18next';
 
+import { useStateSelector } from '#hooks/useReduxStateSelector';
 import useColoredStyles from '#hooks/useColoredStyles';
 import Button, { ButtonType } from '#components/Buttons';
 import Text, { TextTypes } from '#components/Text';
 import Input from '#components/Input';
 import { ThemeColors } from '#utils/theme/types';
+import { changePassword } from '#redux/actions/User';
+import User from '#types/User';
 
-interface ProfileFormInputs {
-  username: string;
-  email: string;
+export interface ProfileFormInputs {
+  login: string;
+  password: string;
 }
 
 const profileSchema = yup.object().shape({
-  username: yup.string().min(2, 'your_name_min_length_error').max(30, 'your_name_max_length_error').required().trim(),
-  email: yup.string().email('please_enter_valid_email').nullable(),
+  login: yup.string().min(2, 'your_name_min_length_error').max(30, 'your_name_max_length_error').required().trim(),
+  password: yup.string().required('password_required_error').min(8, 'password_min_length'),
 });
 
 interface Props {
-  user: { username: string; email: string };
+  user: User;
 }
 
 export default function ProfileForm({ user }: Props) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const styles = useColoredStyles(coloredStyles);
+  const { changePasswordLoading } = useStateSelector((state) => state.user);
 
   const { control, handleSubmit, errors, formState } = useForm({
     mode: 'all',
     resolver: yupResolver(profileSchema),
     defaultValues: {
-      username: user.username || '',
-      email: user.email || '',
+      login: user.login,
+      password: user.password,
     },
   });
 
-  const onSubmit = (formData: ProfileFormInputs) => {
-    console.log(formData);
-  };
+  const responseText = t('changed_password');
+
+  const onSubmit = (data: ProfileFormInputs) => dispatch(changePassword(user.id, data, responseText));
 
   return (
     <View style={styles.form}>
@@ -49,7 +55,7 @@ export default function ProfileForm({ user }: Props) {
       </Text>
       <Controller
         control={control}
-        name="username"
+        name="login"
         render={({ onChange, value }) => (
           <Input
             style={styles.formInput}
@@ -60,29 +66,29 @@ export default function ProfileForm({ user }: Props) {
           />
         )}
       />
-      {!!errors.username?.message && <Text style={styles.errorText}>{t(errors.username.message)}</Text>}
+      {!!errors.login?.message && <Text style={styles.errorText}>{t(errors.login.message)}</Text>}
       <Text type={TextTypes.H4} style={styles.formText}>
-        {t('email')}
+        {t('password')}
       </Text>
       <Controller
         control={control}
-        name="email"
+        name="password"
         render={({ onChange, value }) => (
           <Input
             containerStyle={styles.formInput}
             value={value}
-            autoCapitalize="none"
-            placeholder={t('enter_email')}
+            secureTextEntry={true}
+            placeholder={t('password')}
             onChange={({ nativeEvent }) => onChange(nativeEvent.text)}
           />
         )}
       />
-      {!!errors.email?.message && <Text style={styles.errorText}>{t(errors.email.message)}</Text>}
+      {!!errors.password?.message && <Text style={styles.errorText}>{t(errors.password.message)}</Text>}
       <Button
         type={ButtonType.PRIMARY}
         style={styles.formButton}
-        disabled={!!errors.username || !!errors.email || !formState.isDirty}
-        isLoading={false}
+        disabled={!!errors.login || !!errors.password || !formState.isDirty}
+        isLoading={changePasswordLoading}
         onPress={handleSubmit(onSubmit)}
       >
         {t('edit')}

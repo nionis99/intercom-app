@@ -1,18 +1,25 @@
 import axios, { AxiosError, AxiosResponse, Method } from 'axios';
-import Toast from 'react-native-toast-message';
 
 import authHeader from '#utils/requestHeader';
-import { navigate } from '#navigation/RootNavigation';
 import { saveAuthToken } from '#utils/storage';
+import { navigate } from '#navigation/RootNavigation';
+import { showError } from '#utils/toast';
 
-const apiAction = <D, L, S>(
+export enum ApiMethodEnums {
+  POST = 'POST',
+  GET = 'GET',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+}
+
+const apiAction = async <D, L, S>(
   url: string,
   method: Method,
   dispatchSuccess: (response: AxiosResponse) => S,
   dispatchLoading: () => L,
   data?: D
 ) => {
-  const headers = authHeader();
+  const headers = await authHeader();
   return axios
     .request({ url, method, headers, data })
     .then(dispatchSuccess)
@@ -33,15 +40,5 @@ const removeAccessAndRedirect = async (redirectRoute: string) => {
   await saveAuthToken((null as unknown) as string);
   navigate(redirectRoute, {});
 };
-
-const showError = (message?: string) =>
-  Toast.show({
-    type: 'error',
-    text1: 'Error!',
-    text2: message,
-    position: 'bottom',
-    autoHide: true,
-    visibilityTime: 2000,
-  });
 
 export default apiAction;

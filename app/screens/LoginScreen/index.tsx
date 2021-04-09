@@ -8,14 +8,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { useAppState } from '#contexts/AppContext';
+import { useStateSelector } from '#hooks/useReduxStateSelector';
 import useColoredStyles from '#hooks/useColoredStyles';
 import Button, { ButtonType } from '#components/Buttons';
 import Text, { TextTypes } from '#components/Text';
 import Divider from '#components/Divider';
 import Input from '#components/Input';
-import { login } from '#redux/actions/AuthorizationActions';
+import { login } from '#redux/actions/Authorization';
 import { ThemeColors } from '#utils/theme/types';
-import { useStateSelector } from '#hooks/useReduxStateSelector';
 
 export interface LoginFormInputs {
   login: string;
@@ -27,7 +27,7 @@ function LoginScreen() {
   const dispatch = useDispatch();
   const styles = useColoredStyles(coloredStyles);
   const { authTokenSave } = useAppState();
-  const { loading } = useStateSelector((state) => state.auth);
+  const { loginLoading } = useStateSelector((state) => state.auth);
 
   const loginSchema = yup.object().shape({
     login: yup.string().required(t('name_required_error')),
@@ -85,7 +85,7 @@ function LoginScreen() {
           type={ButtonType.PRIMARY}
           onPress={handleSubmit(handleLoginSubmit)}
           style={styles.button}
-          isLoading={loading}
+          isLoading={loginLoading}
         >
           {t('login')}
         </Button>

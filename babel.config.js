@@ -16,6 +16,7 @@ module.exports = {
           '#assets': './app/assets',
           '#utils': './app/utils',
           '#redux': './app/redux',
+          '#types': './app/types',
         },
       },
     ],

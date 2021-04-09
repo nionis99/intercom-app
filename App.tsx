@@ -3,6 +3,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { AppearanceProvider } from 'react-native-appearance';
 
 import { AppContextProvider } from '#contexts/AppContext';
+import UserProvider from '#contexts/UserContext';
 import ErrorBoundary from '#components/ErrorBoundary';
 import Navigation from '#navigation';
 import store from '#redux/store';
@@ -12,7 +13,9 @@ const App = () => (
     <ErrorBoundary>
       <AppearanceProvider>
         <AppContextProvider>
-          <Navigation />
+          <UserProvider>
+            <Navigation />
+          </UserProvider>
         </AppContextProvider>
       </AppearanceProvider>
     </ErrorBoundary>

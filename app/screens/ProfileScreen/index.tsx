@@ -10,17 +10,17 @@ import ProfileForm from '#components/Forms/ProfileForm';
 import LoadingView from '#components/LoadingView';
 import avatarSrc from '#assets/images/user.png';
 import { ThemeColors } from '#utils/theme/types';
-import { logout } from '#redux/actions/AuthorizationActions';
+import { logout } from '#redux/actions/Authorization';
 
 function ProfileScreen() {
   const { t } = useTranslation();
-  const { authTokenSave } = useAppState();
+  const { authTokenSave, user } = useAppState();
   const styles = useColoredStyles(coloredStyles);
   const [isLogoutLoading, setIsLogoutLoading] = useState<boolean>(false);
 
   const logoutUser = async () => {
     setIsLogoutLoading(true);
-    await logout(authTokenSave).then(() => setIsLogoutLoading(false));
+    await logout(authTokenSave, setIsLogoutLoading);
   };
 
   if (isLogoutLoading) {
@@ -31,11 +31,8 @@ function ProfileScreen() {
     <SafeAreaView style={styles.root}>
       <ScrollView style={styles.scroll} contentContainerStyle={styles.contentContainer}>
         <Avatar size="xlarge" source={avatarSrc} containerStyle={styles.avatar} />
-        <ProfileForm user={{ username: 'Ivan', email: 'ivan@gmail.com' }} />
+        {!!user && <ProfileForm user={user} />}
         <View style={styles.buttons}>
-          <Button style={styles.button} onPress={() => null}>
-            {t('change_password')}
-          </Button>
           <Button style={styles.button} type={ButtonType.DANGER} onPress={logoutUser}>
             {t('log_out')}
           </Button>
