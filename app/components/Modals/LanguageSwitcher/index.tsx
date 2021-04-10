@@ -8,6 +8,8 @@ import Language from './Language';
 import { useLanguageContext } from '#contexts/LanguageContext';
 import useColoredStyles from 'app/hooks/useColoredStyles';
 import Text, { TextTypes } from '#components/Text';
+import { Theme } from '@react-navigation/native';
+import { useAppState } from '#contexts/AppContext';
 
 const DATA = [
   {
@@ -24,7 +26,8 @@ const DATA = [
 
 const LanguageSwitcherModal = () => {
   const { t } = useTranslation();
-  const styles = useColoredStyles(coloredStyles);
+  const { theme } = useAppState();
+  const styles = useColoredStyles(coloredStyles, theme);
 
   const { isChangeLanguageModalVisible, setIsChangeLanguageModalVisible } = useLanguageContext();
 
@@ -59,7 +62,7 @@ const LanguageSwitcherModal = () => {
   );
 };
 
-const coloredStyles = (themeColors = {} as ThemeColors) =>
+const coloredStyles = (themeColors: ThemeColors, theme: Theme) =>
   StyleSheet.create({
     container: {
       marginHorizontal: 16,
@@ -73,7 +76,6 @@ const coloredStyles = (themeColors = {} as ThemeColors) =>
       width: '100%',
       bottom: 0,
       backgroundColor: themeColors.background,
-      height: '50%',
       shadowColor: themeColors.lightGrey,
       shadowOffset: {
         width: 0,
@@ -84,7 +86,7 @@ const coloredStyles = (themeColors = {} as ThemeColors) =>
       elevation: 3,
     },
     background: {
-      backgroundColor: themeColors.blackA(0.4),
+      backgroundColor: theme.dark ? themeColors.whiteA(0.4) : themeColors.midGreyA(0.4),
       flex: 1,
     },
   });

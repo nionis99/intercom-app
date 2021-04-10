@@ -4,11 +4,11 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import { useAppState } from '#contexts/AppContext';
 import useColoredStyles from '#hooks/useColoredStyles';
-import LanguagePicker from '#components/Buttons/LanguagePicker';
+import LanguagePicker from '#components/Buttons/ProfileHeaderRight/LanguagePicker';
 import { ThemeColors, ThemeType } from '#utils/theme/types';
 import { Theme } from '#utils/theme';
 
-const HeaderRightButtons = () => {
+const ProfileHeaderRightButtons = () => {
   const { theme, setTheme } = useAppState();
   const coloredStyles = useColoredStyles(styles, theme);
 
@@ -25,7 +25,7 @@ const HeaderRightButtons = () => {
   );
 };
 
-export default HeaderRightButtons;
+export default ProfileHeaderRightButtons;
 
 const styles = (themeColors: ThemeColors, theme: ThemeType) =>
   StyleSheet.create({

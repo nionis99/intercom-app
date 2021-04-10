@@ -31,7 +31,7 @@ const handleError = (error: AxiosError) => {
   if (error.response) {
     const { status, data: errorMessage } = error.response;
     if (status === 401) return removeAccessAndRedirect('Login');
-    else if (status >= 500) navigate('Server', {});
+    else if (status >= 500) return navigate('Server', {});
     else showError(errorMessage);
   } else return removeAccessAndRedirect('Server');
 };

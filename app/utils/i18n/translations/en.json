@@ -3,7 +3,6 @@
     "loading": "Loading...",
     "oops_error": "Oops! An error occured...",
     "reported_to_us": "An error is reported to us.",
-    "restart_the_application": "Press the button below to restart the application.",
     "restart_application_button": "Restart application",
     "please_log_in": "Please log in to continue",
     "logging_out": "Logging out...",
@@ -19,6 +18,14 @@
     "members": "Users",
     "email": "Email",
     "edit": "Edit",
-    "change_password": "Change password"
+    "change_password": "Change password",
+    "changed_password": "Password changed!",
+    "internal_server_error": "Internal server error",
+    "technical_problem_message": "Our servers are facing a temporary technical problem.\nWe regret the inconvenience causes.\nPlease try again after some time",
+    "flat_filter": "Apartment filter",
+    "select_project": "Select project",
+    "select_street": "Select address",
+    "select_house": "Select house",
+    "select_flat": "Select apartment"
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import ProfileScreen from '#screens/ProfileScreen';
-import HeaderRightButtons from '#components/Buttons/headerRightButtons';
+import ProfileHeaderRightButtons from '#components/Buttons/ProfileHeaderRight';
 import LogoTitle from '#components/LogoTitle';
 
 export type ProfileStackParamList = {
@@ -22,7 +22,7 @@ function ProfileStack() {
         name="Profile"
         options={{
           headerTitle: () => <LogoTitle />,
-          headerRight: () => <HeaderRightButtons />,
+          headerRight: () => <ProfileHeaderRightButtons />,
         }}
         component={ProfileScreen}
       />

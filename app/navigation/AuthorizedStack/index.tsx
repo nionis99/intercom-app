@@ -6,7 +6,6 @@ import BottomTabs, { BottomTabParamList } from './BottomTabs';
 
 export type AuthorizedStackParamList = {
   BottomTabs: NavigatorScreenParams<BottomTabParamList>;
-  Profile: undefined;
 };
 
 export function AuthorizedStack() {

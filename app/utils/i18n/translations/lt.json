@@ -3,8 +3,7 @@
     "loading": "Kraunama...",
     "oops_error": "Oops! An error occured...",
     "reported_to_us": "An error is reported to us.",
-    "restart_the_application": "Press the button below to restart the application.",
-    "restart_application_button": "Restart application",
+    "restart_application_button": "Perkrauti aplikaciją",
     "please_log_in": "Prisijunkite norėdami tęsti",
     "logging_out": "Atsijungiama...",
     "login": "Prisijungti",
@@ -19,6 +18,14 @@
     "members": "Vartotojai",
     "email": "El. paštas",
     "edit": "Redaguoti",
-    "change_password": "Keisti slaptažodį"
+    "change_password": "Keisti slaptažodį",
+    "changed_password": "Slaptažodis pakeistas!",
+    "internal_server_error": "Vidinė serverio klaida",
+    "technical_problem_message": "Mūsų serveriai susiduria su laikina technine problema.\nMes apgailestaujame dėl nepatogumų.\nPo kurio laiko bandykite dar kartą.",
+    "flat_filter": "Filtruoti butus",
+    "select_project": "Pasirinkite projektą",
+    "select_street": "Pasirinkite gatvę",
+    "select_house": "Pasirinkite namą",
+    "select_flat": "Pasirinkite butą"
   }
 }

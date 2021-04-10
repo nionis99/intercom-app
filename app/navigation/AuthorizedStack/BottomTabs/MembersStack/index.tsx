@@ -1,14 +1,14 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useTranslation } from 'react-i18next';
 import MembersScreen from '#screens/MembersScreen';
+import MembersHeaderRightButton from '#components/Buttons/MembersHeaderRight';
+import LogoTitle from '#components/LogoTitle';
 
 export type MembersStackParamList = {
   Members: undefined;
 };
 
 function MembersStack() {
-  const { t } = useTranslation();
   const Stack = createStackNavigator<MembersStackParamList>();
 
   return (
@@ -17,7 +17,14 @@ function MembersStack() {
         headerBackTitleVisible: false,
       }}
     >
-      <Stack.Screen name="Members" options={{ title: t('members') }} component={MembersScreen} />
+      <Stack.Screen
+        name="Members"
+        options={{
+          headerTitle: () => <LogoTitle />,
+          headerRight: () => <MembersHeaderRightButton />,
+        }}
+        component={MembersScreen}
+      />
     </Stack.Navigator>
   );
 }
