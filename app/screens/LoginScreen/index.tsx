@@ -31,7 +31,7 @@ function LoginScreen() {
 
   const loginSchema = yup.object().shape({
     login: yup.string().required(t('name_required_error')),
-    password: yup.string().required('required_password').min(8, 'password_min_length'),
+    password: yup.string().required('required_password'),
   });
 
   const { control, errors, handleSubmit } = useForm<LoginFormInputs>({
