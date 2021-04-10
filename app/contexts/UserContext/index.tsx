@@ -40,7 +40,7 @@ const UserProvider = ({ children }: { children: JSX.Element }) => {
     if (authToken && user) dispatch(getPlaces());
   }, [authToken, dispatch, user]);
 
-  if (authorizationLoading || placeLoading) {
+  if (!user || authorizationLoading || placeLoading) {
     return <LoadingView title={t('authorizing')} />;
   }
 

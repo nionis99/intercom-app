@@ -1,9 +1,11 @@
 import React, { createContext, SetStateAction, useCallback, useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useColorScheme } from 'react-native';
 
 import { Theme } from '#utils/theme';
 import { ThemeType } from '#utils/theme/types';
 import { getToken, saveAuthToken } from '#utils/storage';
+import LoadingView from '#components/LoadingView';
 import User, { UserRoleEnum } from '#types/User';
 
 type AppContextType = {
@@ -20,7 +22,9 @@ type AppContextType = {
 export const AppContext = createContext({} as AppContextType);
 
 export const AppContextProvider = (props: { children: React.ReactNode }) => {
+  const { t } = useTranslation();
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [authToken, setAuthToken] = useState<string>();
 
   const scheme = useColorScheme();
@@ -37,11 +41,15 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
   const prepareAuthToken = useCallback(async () => {
     const foundToken = await getToken();
     if (foundToken) authTokenSave(foundToken);
+
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
     prepareAuthToken();
   }, [prepareAuthToken]);
+
+  if (isLoading) return <LoadingView title={t('authorizing')} />;
 
   return (
     <AppContext.Provider
