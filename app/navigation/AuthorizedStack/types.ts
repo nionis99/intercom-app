@@ -1,4 +1,4 @@
-import { MembersStackParamList } from '#navigation/AuthorizedStack/MembersStack';
+import { MembersStackParamList } from '#navigation/AuthorizedStack/BottomTabs/MembersStack';
 
 export type SelectContactsParams = {
   searchValue: string;

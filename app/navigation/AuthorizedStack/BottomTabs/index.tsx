@@ -4,8 +4,8 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MembersStack, { MembersStackParamList } from '../MembersStack';
-import ProfileStack, { ProfileStackParamList } from '../ProfileStack';
+import MembersStack, { MembersStackParamList } from './MembersStack';
+import ProfileStack, { ProfileStackParamList } from './ProfileStack';
 import getIconName from '#utils/helpers/getIconName';
 
 export type BottomTabParamList = {
