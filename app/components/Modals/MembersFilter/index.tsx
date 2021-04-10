@@ -1,6 +1,7 @@
 import React, { SetStateAction } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { isIOS } from 'react-native-elements/dist/helpers';
 
 import { useUserState } from '#contexts/UserContext';
 import { usePlaceValues } from '#hooks/usePlacesValues';
@@ -21,7 +22,7 @@ const MembersFilterModal = ({ isFilterModalVisible, setIsFilterModalVisible }: P
   const { placeData } = useStateSelector((state) => state.place);
   const { selectedProject, selectedAddress, selectedHouse, selectedFlat } = useUserState();
 
-  const styles = useColoredStyles(coloredStyles);
+  const styles = useColoredStyles(coloredStyles, isIOS);
 
   const {
     uniqueProjects,
@@ -41,44 +42,47 @@ const MembersFilterModal = ({ isFilterModalVisible, setIsFilterModalVisible }: P
           {t('flat_filter')}
         </Text>
         <SafeAreaView style={styles.contentContainer}>
-          <PlaceFilterDropdownItems
-            filterTitle={t('select_project')}
-            defaultItem={selectedProject}
-            items={uniqueProjects}
-            onChangeValue={changeProject}
-          />
-          <PlaceFilterDropdownItems
-            filterTitle={t('select_street')}
-            defaultItem={selectedAddress}
-            items={uniqueStreets}
-            onChangeValue={changeAddress}
-          />
-          <View style={styles.numbersDropdownContainer}>
+          <ScrollView>
             <PlaceFilterDropdownItems
-              filterTitle={t('select_house')}
-              defaultItem={selectedHouse}
-              items={uniqueHouseNumbers}
-              onChangeValue={changeHouseNumber}
-              containerStyle={styles.numbersDropdown}
+              filterTitle={t('select_project')}
+              defaultItem={selectedProject}
+              items={uniqueProjects}
+              onChangeValue={changeProject}
             />
             <PlaceFilterDropdownItems
-              filterTitle={t('select_flat')}
-              defaultItem={selectedFlat}
-              items={uniqueFlatNumbers}
-              onChangeValue={changeFlatNumber}
-              containerStyle={styles.numbersDropdown}
+              filterTitle={t('select_street')}
+              defaultItem={selectedAddress}
+              items={uniqueStreets}
+              onChangeValue={changeAddress}
             />
-          </View>
+            <View style={styles.numbersDropdownContainer}>
+              <PlaceFilterDropdownItems
+                filterTitle={t('select_house')}
+                defaultItem={selectedHouse}
+                items={uniqueHouseNumbers}
+                onChangeValue={changeHouseNumber}
+                containerStyle={styles.numbersDropdown}
+              />
+              <PlaceFilterDropdownItems
+                filterTitle={t('select_flat')}
+                defaultItem={selectedFlat}
+                items={uniqueFlatNumbers}
+                onChangeValue={changeFlatNumber}
+                containerStyle={styles.numbersDropdown}
+              />
+            </View>
+          </ScrollView>
         </SafeAreaView>
       </View>
     </ModalView>
   );
 };
 
-const coloredStyles = (themeColors: ThemeColors) =>
+const coloredStyles = (themeColors: ThemeColors, isIOS: boolean) =>
   StyleSheet.create({
     contentContainer: {
-      paddingVertical: 16,
+      paddingVertical: isIOS ? 0 : 16,
+      height: '100%',
     },
     modalTitle: {
       padding: 16,
@@ -90,6 +94,7 @@ const coloredStyles = (themeColors: ThemeColors) =>
       bottom: 0,
       backgroundColor: themeColors.background,
       shadowColor: themeColors.lightGrey,
+      height: isIOS ? '85%' : undefined,
       shadowOffset: {
         width: 0,
         height: 1,

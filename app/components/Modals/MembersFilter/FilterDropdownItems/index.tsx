@@ -8,6 +8,7 @@ import useColoredStyles from '#hooks/useColoredStyles';
 import Text, { TextTypes } from '#components/Text';
 import { ThemeColors } from '#utils/theme/types';
 import { Maybe } from '#types';
+import { isIOS } from 'react-native-elements/dist/helpers';
 
 interface Props {
   filterTitle: string;
@@ -27,13 +28,14 @@ const PlaceFilterDropdownItems = ({ filterTitle, defaultItem, items, onChangeVal
       <Text type={TextTypes.H2} style={styles.filterTitle}>
         {filterTitle}
       </Text>
-      <View style={[styles.container, isEnabled(items) ? undefined : styles.disabledContent]}>
+      <View style={isIOS ? undefined : [styles.container, isEnabled(items) ? undefined : styles.disabledContent]}>
         <Picker
           selectedValue={defaultItem || items[0]}
-          style={styles.picker}
-          itemStyle={styles.pickerItem}
+          style={isIOS ? undefined : styles.picker}
+          itemStyle={isIOS ? undefined : styles.pickerItem}
           onValueChange={(itemValue) => onChangeValue(itemValue as string)}
           enabled={isEnabled(items)}
+          shouldRasterizeIOS={true}
         >
           {items.map((item, index) => {
             return <Picker.Item label={item} value={item} key={index} />;
