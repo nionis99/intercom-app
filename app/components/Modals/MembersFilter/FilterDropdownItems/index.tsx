@@ -2,13 +2,13 @@ import React from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import { Theme } from '@react-navigation/native';
 import { Picker } from '@react-native-community/picker';
+import { isIOS } from 'react-native-elements/dist/helpers';
 
 import { useAppState } from '#contexts/AppContext';
 import useColoredStyles from '#hooks/useColoredStyles';
 import Text, { TextTypes } from '#components/Text';
 import { ThemeColors } from '#utils/theme/types';
 import { Maybe } from '#types';
-import { isIOS } from 'react-native-elements/dist/helpers';
 
 interface Props {
   filterTitle: string;
@@ -38,7 +38,14 @@ const PlaceFilterDropdownItems = ({ filterTitle, defaultItem, items, onChangeVal
           shouldRasterizeIOS={true}
         >
           {items.map((item, index) => {
-            return <Picker.Item label={item} value={item} key={index} />;
+            return (
+              <Picker.Item
+                color={theme.dark ? theme.colors.white : theme.colors.black}
+                label={item}
+                value={item}
+                key={index}
+              />
+            );
           })}
         </Picker>
       </View>

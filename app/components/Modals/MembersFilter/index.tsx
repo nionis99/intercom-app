@@ -94,7 +94,7 @@ const coloredStyles = (themeColors: ThemeColors, isIOS: boolean) =>
       bottom: 0,
       backgroundColor: themeColors.background,
       shadowColor: themeColors.lightGrey,
-      height: isIOS ? '85%' : undefined,
+      height: isIOS ? '70%' : undefined,
       shadowOffset: {
         width: 0,
         height: 1,
