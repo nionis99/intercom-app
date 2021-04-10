@@ -31,7 +31,7 @@ function LoginScreen() {
 
   const loginSchema = yup.object().shape({
     login: yup.string().required(t('name_required_error')),
-    password: yup.string().required(t('password_required_error')),
+    password: yup.string().required('required_password').min(8, 'password_min_length'),
   });
 
   const { control, errors, handleSubmit } = useForm<LoginFormInputs>({
@@ -63,7 +63,7 @@ function LoginScreen() {
             />
           )}
         />
-        {!!errors.login?.message && <Text style={styles.invalidInput}>{errors.login.message}</Text>}
+        {!!errors.login?.message && <Text style={styles.invalidInput}>{t(errors.login.message)}</Text>}
         <Text type={TextTypes.H4} style={styles.label}>
           {t('password')}
         </Text>
@@ -80,7 +80,7 @@ function LoginScreen() {
             />
           )}
         />
-        {!!errors.password?.message && <Text style={styles.invalidInput}>{errors.password.message}</Text>}
+        {!!errors.password?.message && <Text style={styles.invalidInput}>{t(errors.password.message)}</Text>}
         <Button
           type={ButtonType.PRIMARY}
           onPress={handleSubmit(handleLoginSubmit)}

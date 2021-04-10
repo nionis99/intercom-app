@@ -31,7 +31,7 @@ interface Props extends TextInputProps {
 
 function Input({
   disabled = false,
-  size = InputSize.MEDIUM,
+  size = InputSize.SMALL,
   style,
   isInvalid = false,
   containerStyle,
@@ -111,8 +111,9 @@ export const coloredDefaultStyles = (themeColors: ThemeColors, isDisabled: boole
     },
     input: {
       flex: 1,
-      color: themeColors.text,
+      color: themeColors.black,
       borderRadius: DEFAULT_BORDER_RADIUS,
+      backgroundColor: themeColors.white,
     },
     disabled: {
       color: themeColors.text,
@@ -130,6 +131,7 @@ export const inputTypesStyles = (themeColors: ThemeColors, isDisabled: boolean) 
     input: {
       borderColor: themeColors.borderGrey,
       borderWidth: 1,
+      ...(isDisabled && { backgroundColor: themeColors.midGreyA(), borderColor: themeColors.midGreyA() }),
     },
   }),
 });

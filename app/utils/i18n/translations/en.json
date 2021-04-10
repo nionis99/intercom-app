@@ -1,6 +1,6 @@
 {
   "translation": {
-    "authorizing": "Authorizing...",
+    "loading": "Loading...",
     "oops_error": "Oops! An error occured...",
     "reported_to_us": "An error is reported to us.",
     "restart_the_application": "Press the button below to restart the application.",
@@ -10,8 +10,9 @@
     "login": "Log in",
     "username": "Username",
     "password": "Password",
+    "password_min_length": "Password should contain at least 8 characters",
     "name_required_error": "Username is required",
-    "password_required_error": "Password is required",
+    "required_password": "Password is required",
     "log_out": "Log out",
     "select_language": "Select language",
     "profile": "Profile",

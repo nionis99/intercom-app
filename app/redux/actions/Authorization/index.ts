@@ -15,7 +15,6 @@ export const login = (data: LoginFormInputs, setAccessToken: (token: string) => 
   dispatch(loginLoading(true));
   const dispatchSuccess = (response: AxiosResponse) => setAccessToken(response.data.token);
   const dispatchLoading = () => dispatch(loginLoading(false));
-
   return apiAction(AUTH_URL, ApiMethodEnums.POST, dispatchSuccess, dispatchLoading, data);
 };
 

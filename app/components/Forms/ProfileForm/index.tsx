@@ -16,13 +16,11 @@ import { changePassword } from '#redux/actions/User';
 import User from '#types/User';
 
 export interface ProfileFormInputs {
-  login: string;
   password: string;
 }
 
 const profileSchema = yup.object().shape({
-  login: yup.string().min(2, 'your_name_min_length_error').max(30, 'your_name_max_length_error').required().trim(),
-  password: yup.string().required('password_required_error').min(8, 'password_min_length'),
+  password: yup.string().required('required_password').min(8, 'password_min_length'),
 });
 
 interface Props {
@@ -38,10 +36,7 @@ export default function ProfileForm({ user }: Props) {
   const { control, handleSubmit, errors, formState } = useForm({
     mode: 'all',
     resolver: yupResolver(profileSchema),
-    defaultValues: {
-      login: user.login,
-      password: user.password,
-    },
+    defaultValues: { password: user.password },
   });
 
   const responseText = t('changed_password');
@@ -53,20 +48,7 @@ export default function ProfileForm({ user }: Props) {
       <Text type={TextTypes.H4} style={styles.formText}>
         {t('username')}
       </Text>
-      <Controller
-        control={control}
-        name="login"
-        render={({ onChange, value }) => (
-          <Input
-            style={styles.formInput}
-            value={value}
-            autoCapitalize="none"
-            placeholder={t('enter_name')}
-            onChange={({ nativeEvent }) => onChange(nativeEvent.text)}
-          />
-        )}
-      />
-      {!!errors.login?.message && <Text style={styles.errorText}>{t(errors.login.message)}</Text>}
+      <Input style={styles.formInput} value={user.login} disabled={true} />
       <Text type={TextTypes.H4} style={styles.formText}>
         {t('password')}
       </Text>
@@ -87,11 +69,11 @@ export default function ProfileForm({ user }: Props) {
       <Button
         type={ButtonType.PRIMARY}
         style={styles.formButton}
-        disabled={!!errors.login || !!errors.password || !formState.isDirty}
+        disabled={!!errors.password || !formState.isDirty}
         isLoading={changePasswordLoading}
         onPress={handleSubmit(onSubmit)}
       >
-        {t('edit')}
+        {t('change_password')}
       </Button>
     </View>
   );

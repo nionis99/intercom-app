@@ -33,7 +33,7 @@ const handleError = (error: AxiosError) => {
     if (status === 401) return removeAccessAndRedirect('Login');
     else if (status >= 500) navigate('Server', {});
     else showError(errorMessage);
-  } else return removeAccessAndRedirect('server');
+  } else return removeAccessAndRedirect('Server');
 };
 
 const removeAccessAndRedirect = async (redirectRoute: string) => {

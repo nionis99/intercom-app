@@ -1,6 +1,6 @@
 {
   "translation": {
-    "authorizing": "Autorizacija...",
+    "loading": "Kraunama...",
     "oops_error": "Oops! An error occured...",
     "reported_to_us": "An error is reported to us.",
     "restart_the_application": "Press the button below to restart the application.",
@@ -10,8 +10,9 @@
     "login": "Prisijungti",
     "username": "Vartotojo vardas",
     "password": "Slaptažodis",
+    "password_min_length": "Slaptažodį turi sudaryti bent 8 simboliai",
     "name_required_error": "Vartotojo vardas privalomas",
-    "password_required_error": "Slaptažodis privalomas",
+    "required_password": "Slaptažodis privalomas",
     "log_out": "Atsijungti",
     "select_language": "Select language",
     "profile": "Profilis",
