@@ -12,6 +12,8 @@ import LoadingView from '#components/LoadingView';
 import DeleteModal from '#components/Modals/DeleteModal';
 import { ThemeColors } from '#utils/theme/types';
 import MembersList from '#components/Lists/Members';
+import EditMemberModal from '#components/Modals/EditMember';
+import Member from '#types/Member';
 
 function MembersScreen() {
   const dispatch = useDispatch();
@@ -20,6 +22,7 @@ function MembersScreen() {
   const { selectedFlatId } = useUserState();
   const { membersLoading, deleteLoading, membersData } = useStateSelector((state) => state.members);
   const [deletingMemberId, setDeletingMemberId] = useState<number | null>(null);
+  const [editingMember, setEditingMember] = useState<Member | null>(null);
 
   const deleteResponseText = t('member_deleted');
 
@@ -44,7 +47,11 @@ function MembersScreen() {
 
   return (
     <SafeAreaView style={styles.root}>
-      <MembersList membersData={membersData} setDeletingMemberId={setDeletingMemberId} />
+      <MembersList
+        membersData={membersData}
+        setDeletingMemberId={setDeletingMemberId}
+        setEditingMember={setEditingMember}
+      />
       <DeleteModal
         title={t('delete_member')}
         isDeleteModalShown={!!deletingMemberId}
@@ -52,6 +59,7 @@ function MembersScreen() {
         onDeleteModal={onDeleteMember}
         isLoading={deleteLoading}
       />
+      <EditMemberModal editingMember={editingMember} show={!!editingMember} onClose={() => setEditingMember(null)} />
     </SafeAreaView>
   );
 }

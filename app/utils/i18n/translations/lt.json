@@ -18,6 +18,7 @@
     "profile": "Profilis",
     "members": "Vartotojai",
     "delete_member": "Ištrinti šį vartotoją?",
+    "edit_member": "Redaguoti vartotoją",
     "member_deleted": "Vartotojas ištrintas!",
     "member_created": "Vartotojas sukurtas!",
     "member_updated": "Vartotojo duomenys pakeisti!",

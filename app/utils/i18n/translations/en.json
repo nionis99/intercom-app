@@ -18,6 +18,7 @@
     "profile": "Profile",
     "members": "Users",
     "delete_member": "Delete current user?",
+    "edit_member": "Edit member",
     "member_deleted": "User was deleted!",
     "member_created": "User was created!",
     "member_updated": "User data was updated!",

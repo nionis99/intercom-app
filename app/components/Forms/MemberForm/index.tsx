@@ -51,7 +51,7 @@ const MemberForm = ({ editingMember, onSubmit, onCancel }: Props) => {
   const { t } = useTranslation();
   const { selectedFlatId } = useUserState();
   const styles = useColoredStyles(coloredStyles);
-  const { changePasswordLoading } = useStateSelector((state) => state.user);
+  const { createLoading, updateLoading } = useStateSelector((state) => state.members);
 
   const onFormSubmit = (data: MemberFormInputs) => onSubmit({ ...data, flat_id: parseInt(selectedFlatId || '', 0) });
 
@@ -59,7 +59,7 @@ const MemberForm = ({ editingMember, onSubmit, onCancel }: Props) => {
     mode: 'all',
     resolver: yupResolver(memberSchema),
     defaultValues: {
-      is_active: editingMember?.is_active || true,
+      is_active: editingMember?.is_active,
       name: editingMember?.name || t(DEFAULT_MEMBER_NAME),
       email: editingMember?.email || '',
       phone: editingMember?.phone || '',
@@ -68,12 +68,15 @@ const MemberForm = ({ editingMember, onSubmit, onCancel }: Props) => {
     },
   });
 
+  console.log('editing value', editingMember?.is_active);
+
   return (
     <View style={styles.form}>
       <View style={styles.status}>
         <Controller
           control={control}
           name="is_active"
+          defaultValue={editingMember?.is_active || true}
           render={({ onChange, value }) => (
             <Switch
               trackColor={{ false: LightThemeColors.midGrey, true: LightThemeColors.primary }}
@@ -169,7 +172,7 @@ const MemberForm = ({ editingMember, onSubmit, onCancel }: Props) => {
         <Button
           type={ButtonType.PRIMARY}
           style={styles.primaryModalButton}
-          isLoading={changePasswordLoading}
+          isLoading={createLoading || updateLoading}
           onPress={handleSubmit(onFormSubmit)}
         >
           {t(editingMember ? 'edit' : 'create')}

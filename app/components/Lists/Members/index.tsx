@@ -16,9 +16,10 @@ import avatarSrc from '#assets/images/user.png';
 interface Props {
   membersData: Member[];
   setDeletingMemberId: React.Dispatch<SetStateAction<number | null>>;
+  setEditingMember: React.Dispatch<SetStateAction<Member | null>>;
 }
 
-const MembersList = ({ membersData, setDeletingMemberId }: Props) => {
+const MembersList = ({ membersData, setDeletingMemberId, setEditingMember }: Props) => {
   const { t } = useTranslation();
   const { theme } = useAppState();
   const styles = useColoredStyles(coloredStyles, theme);
@@ -41,7 +42,7 @@ const MembersList = ({ membersData, setDeletingMemberId }: Props) => {
             </ListItem.Content>
             <ListItem.Content right={true}>
               <View style={styles.actions}>
-                <TouchableOpacity onPress={() => console.log('edit')} style={styles.touch}>
+                <TouchableOpacity onPress={() => setEditingMember(member)} style={styles.touch}>
                   <EvilIcon name="pencil" size={30} color={theme.colors.secondary} style={styles.editIcon} />
                 </TouchableOpacity>
                 {!member.is_owner && (

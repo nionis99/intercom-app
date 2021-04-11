@@ -6,8 +6,8 @@ export const showError = (message?: string) =>
     text1: 'Error!',
     text2: message,
     position: 'bottom',
+    visibilityTime: 1000,
     autoHide: true,
-    visibilityTime: 2000,
   });
 
 export const showSuccess = (message: string) =>
@@ -15,6 +15,6 @@ export const showSuccess = (message: string) =>
     type: 'success',
     text1: message,
     position: 'bottom',
+    visibilityTime: 1000,
     autoHide: true,
-    visibilityTime: 2000,
   });
