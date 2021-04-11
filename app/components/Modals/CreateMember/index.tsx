@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 
 import ModalView from '#components/Modals';
 import MemberForm, { MemberFormInputs } from '#components/Forms/MemberForm';
@@ -30,12 +30,12 @@ const CreateMemberModal = ({ show, onClose }: Props) => {
   return (
     <ModalView show={show} onClose={onClose}>
       <ScrollView style={coloredStyles.scroll}>
-        <View style={coloredStyles.modalContent}>
+        <SafeAreaView style={coloredStyles.modalContent}>
           <Text type={TextTypes.H2} style={coloredStyles.sectionTitle}>
             {t('create_member')}
           </Text>
           <MemberForm onSubmit={onCreateMember} onCancel={onClose} />
-        </View>
+        </SafeAreaView>
       </ScrollView>
     </ModalView>
   );

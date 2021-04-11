@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, SafeAreaView, StyleSheet, TouchableHighlight, View } from 'react-native';
+import { Modal, SafeAreaView, StyleSheet, TouchableHighlight } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useTranslation } from 'react-i18next';
 
@@ -37,6 +37,7 @@ const LanguageSwitcherModal = () => {
       presentationStyle="overFullScreen"
       transparent={true}
       animationType="slide"
+      supportedOrientations={['portrait', 'landscape']}
       onRequestClose={() => setIsChangeLanguageModalVisible(false)}
     >
       <TouchableHighlight
@@ -46,7 +47,7 @@ const LanguageSwitcherModal = () => {
       >
         <></>
       </TouchableHighlight>
-      <View style={styles.outerContainer}>
+      <SafeAreaView style={styles.outerContainer}>
         <Text type={TextTypes.H1} style={styles.modalTitle}>
           {t('select_language')}
         </Text>
@@ -57,7 +58,7 @@ const LanguageSwitcherModal = () => {
             keyExtractor={(item) => item.id}
           />
         </SafeAreaView>
-      </View>
+      </SafeAreaView>
     </Modal>
   );
 };

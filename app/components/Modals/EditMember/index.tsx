@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 
 import useColoredStyles from '#hooks/useColoredStyles';
 import MemberForm, { MemberFormInputs } from '#components/Forms/MemberForm';
@@ -33,12 +33,12 @@ const EditMemberModal = ({ editingMember, show, onClose }: Props) => {
   return (
     <ModalView show={show} onClose={onClose}>
       <ScrollView style={coloredStyles.scroll}>
-        <View style={coloredStyles.modalContent}>
+        <SafeAreaView style={coloredStyles.modalContent}>
           <Text type={TextTypes.H2} style={coloredStyles.sectionTitle}>
             {t('edit_member')}
           </Text>
           {editingMember && <MemberForm editingMember={editingMember} onSubmit={onUpdateMember} onCancel={onClose} />}
-        </View>
+        </SafeAreaView>
       </ScrollView>
     </ModalView>
   );

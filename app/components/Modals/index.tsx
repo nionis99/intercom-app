@@ -22,6 +22,7 @@ const ModalView = ({ show, onClose, children }: Props) => {
       presentationStyle="overFullScreen"
       transparent={true}
       animationType="slide"
+      supportedOrientations={['portrait', 'landscape']}
       onRequestClose={onClose}
     >
       <TouchableHighlight style={coloredStyles.background} onPressOut={onClose} underlayColor={'transparent'}>
