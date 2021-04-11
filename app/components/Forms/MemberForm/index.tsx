@@ -105,6 +105,7 @@ const MemberForm = ({ editingMember, onSubmit, onCancel }: Props) => {
       <Controller
         control={control}
         name="email"
+        style={styles.status}
         render={({ onChange, value }) => (
           <Input
             containerStyle={styles.formInput}
@@ -209,6 +210,9 @@ const coloredStyles = (themeColors: ThemeColors) =>
       marginLeft: 4,
       marginBottom: 8,
       color: themeColors.danger,
+    },
+    status: {
+      justifyContent: 'flex-end',
     },
     thumb: {
       color: themeColors.white,
