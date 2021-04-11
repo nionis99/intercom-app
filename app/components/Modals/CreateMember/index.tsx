@@ -23,7 +23,6 @@ const CreateMemberModal = ({ show, onClose }: Props) => {
   const responseText = t('member_created');
 
   const onCreateMember = async (data: MemberFormInputs) => {
-    console.log(data);
     await dispatch(createMember(data, responseText));
     onClose();
   };

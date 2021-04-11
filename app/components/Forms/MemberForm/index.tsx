@@ -70,19 +70,21 @@ const MemberForm = ({ editingMember, onSubmit, onCancel }: Props) => {
 
   return (
     <View style={styles.form}>
-      <Controller
-        control={control}
-        name="is_active"
-        render={({ onChange, value }) => (
-          <Switch
-            trackColor={{ false: LightThemeColors.midGrey, true: LightThemeColors.primary }}
-            thumbColor={LightThemeColors.white}
-            ios_backgroundColor={LightThemeColors.midGrey}
-            onValueChange={onChange}
-            value={value}
-          />
-        )}
-      />
+      <View style={styles.status}>
+        <Controller
+          control={control}
+          name="is_active"
+          render={({ onChange, value }) => (
+            <Switch
+              trackColor={{ false: LightThemeColors.midGrey, true: LightThemeColors.primary }}
+              thumbColor={LightThemeColors.white}
+              ios_backgroundColor={LightThemeColors.midGrey}
+              onValueChange={onChange}
+              value={value}
+            />
+          )}
+        />
+      </View>
       <Text type={TextTypes.H4} style={styles.formText}>
         {t('name')}
       </Text>
@@ -105,7 +107,6 @@ const MemberForm = ({ editingMember, onSubmit, onCancel }: Props) => {
       <Controller
         control={control}
         name="email"
-        style={styles.status}
         render={({ onChange, value }) => (
           <Input
             containerStyle={styles.formInput}
@@ -212,7 +213,7 @@ const coloredStyles = (themeColors: ThemeColors) =>
       color: themeColors.danger,
     },
     status: {
-      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
     },
     thumb: {
       color: themeColors.white,
