@@ -23,7 +23,10 @@
     "member_updated": "Vartotojo duomenys pakeisti!",
     "delete": "Ištrinti",
     "cancel": "Atšaukti",
+    "create": "Sukurti",
+    "create_member": "Sukurti vartotoją",
     "email": "El. paštas",
+    "email_format": "El. pašto adresas neatitinka formato",
     "edit": "Redaguoti",
     "change_password": "Keisti slaptažodį",
     "changed_password": "Slaptažodis pakeistas!",
@@ -34,6 +37,13 @@
     "select_street": "Pasirinkite gatvę",
     "select_house": "Pasirinkite namą",
     "select_flat": "Pasirinkite butą",
-    "user": "Vartotojas"
+    "user": "Vartotojas",
+    "phone": "Telefonas",
+    "phone_number": "Telefono numeris",
+    "note": "Užrašas",
+    "pin": "PIN kodas",
+    "required_pin_code": "PIN kodas privalomas",
+    "pin_format": "Pin kodas turi būti tik iš skaitmenų",
+    "name": "Vardas"
   }
 }

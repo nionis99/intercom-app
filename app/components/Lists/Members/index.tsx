@@ -26,33 +26,33 @@ const MembersList = ({ membersData, setDeletingMemberId }: Props) => {
   return (
     <ScrollView style={styles.scroll} contentContainerStyle={styles.contentContainer}>
       {membersData.map((member) => (
-        <ListItem key={member.id} bottomDivider containerStyle={styles.listContainer}>
-          <FAIcon name="circle" color={member.is_active ? theme.colors.lightGreen : theme.colors.danger} size={20} />
-          <Avatar source={avatarSrc} />
-          <ListItem.Content>
-            <ListItem.Title>{member.name || t(DEFAULT_MEMBER_NAME)}</ListItem.Title>
-            {member.pin && (
-              <ListItem.Subtitle>
-                {t('pin')}: {member.pin}
-              </ListItem.Subtitle>
-            )}
-          </ListItem.Content>
-          <TouchableOpacity onPress={() => console.log('toMemberInfo')} style={styles.touch}>
-            <ListItem.Chevron size={30} color={theme.colors.primary} style={styles.chevron} />
-          </TouchableOpacity>
-          <ListItem.Content right={true}>
-            <View style={styles.actions}>
-              <TouchableOpacity onPress={() => console.log('edit')} style={styles.touch}>
-                <EvilIcon name="pencil" size={30} color={theme.colors.secondary} style={styles.editIcon} />
-              </TouchableOpacity>
-              {!member.is_owner && (
-                <TouchableOpacity onPress={() => setDeletingMemberId(member.id)} style={styles.touch}>
-                  <EvilIcon name="trash" size={30} color={theme.colors.danger} />
-                </TouchableOpacity>
+        <TouchableOpacity onPress={() => console.log('/member')} key={member.id}>
+          <ListItem bottomDivider containerStyle={styles.listContainer}>
+            <FAIcon name="circle" color={member.is_active ? theme.colors.lightGreen : theme.colors.danger} size={20} />
+            <Avatar source={avatarSrc} />
+            <ListItem.Content>
+              <ListItem.Title style={styles.listTitle}>{member.name || t(DEFAULT_MEMBER_NAME)}</ListItem.Title>
+
+              {member.pin && (
+                <ListItem.Subtitle style={styles.listSubtitle}>
+                  {t('pin')}: {member.pin}
+                </ListItem.Subtitle>
               )}
-            </View>
-          </ListItem.Content>
-        </ListItem>
+            </ListItem.Content>
+            <ListItem.Content right={true}>
+              <View style={styles.actions}>
+                <TouchableOpacity onPress={() => console.log('edit')} style={styles.touch}>
+                  <EvilIcon name="pencil" size={30} color={theme.colors.secondary} style={styles.editIcon} />
+                </TouchableOpacity>
+                {!member.is_owner && (
+                  <TouchableOpacity onPress={() => setDeletingMemberId(member.id)} style={styles.touch}>
+                    <EvilIcon name="trash" size={30} color={theme.colors.danger} />
+                  </TouchableOpacity>
+                )}
+              </View>
+            </ListItem.Content>
+          </ListItem>
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );
@@ -67,12 +67,15 @@ const coloredStyles = (themeColors: ThemeColors, theme: Theme) =>
     },
     contentContainer: {
       justifyContent: 'space-between',
+      color: theme.dark ? themeColors.white : themeColors.black,
     },
     listContainer: {
       display: 'flex',
       justifyContent: 'center',
-      backgroundColor: theme.dark ? themeColors.midGrey : themeColors.white,
+      backgroundColor: theme.dark ? themeColors.black : themeColors.white,
     },
+    listTitle: { color: theme.dark ? themeColors.white : themeColors.black },
+    listSubtitle: { color: themeColors.midGrey },
     actions: {
       display: 'flex',
       flexDirection: 'row',

@@ -23,7 +23,10 @@
     "member_updated": "User data was updated!",
     "delete": "Delete",
     "cancel": "Cancel",
+    "create": "Create",
+    "create_member": "Create user",
     "email": "Email",
+    "email_format": "Email is not valid",
     "edit": "Edit",
     "change_password": "Change password",
     "changed_password": "Password changed!",
@@ -34,6 +37,13 @@
     "select_street": "Select address",
     "select_house": "Select house",
     "select_flat": "Select apartment",
-    "user": "User"
+    "user": "User",
+    "phone": "Phone",
+    "phone_number": "Phone number",
+    "note": "Note",
+    "pin": "PIN code",
+    "required_pin_code": "PIN code is required",
+    "pin_format": "Pin code must be only digits",
+    "name": "Name"
   }
 }

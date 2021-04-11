@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { useAppState } from '#contexts/AppContext';
@@ -14,12 +14,9 @@ const ProfileHeaderRightButtons = () => {
 
   return (
     <View style={coloredStyles.header}>
-      <Icon
-        name="moon"
-        size={26}
-        style={coloredStyles.themeButton}
-        onPress={() => setTheme(theme.dark ? Theme.light : Theme.dark)}
-      />
+      <TouchableOpacity onPress={() => setTheme(theme.dark ? Theme.light : Theme.dark)}>
+        <Icon name="moon" size={26} style={coloredStyles.themeButton} />
+      </TouchableOpacity>
       <LanguagePicker style={coloredStyles.flagButton} />
     </View>
   );

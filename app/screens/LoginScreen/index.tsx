@@ -12,7 +12,6 @@ import { useStateSelector } from '#hooks/useReduxStateSelector';
 import useColoredStyles from '#hooks/useColoredStyles';
 import Button, { ButtonType } from '#components/Buttons';
 import Text, { TextTypes } from '#components/Text';
-import Divider from '#components/Divider';
 import Input from '#components/Input';
 import { login } from '#redux/actions/Authorization';
 import { ThemeColors } from '#utils/theme/types';
@@ -89,7 +88,6 @@ function LoginScreen() {
         >
           {t('login')}
         </Button>
-        <Divider />
       </View>
     </KeyboardAwareScrollView>
   );

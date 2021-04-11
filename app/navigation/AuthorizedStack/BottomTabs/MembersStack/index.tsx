@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import MembersScreen from '#screens/MembersScreen';
 import MembersHeaderRightButton from '#components/Buttons/MembersHeaderRight';
 import LogoTitle from '#components/LogoTitle';
