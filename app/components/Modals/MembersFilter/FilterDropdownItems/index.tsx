@@ -35,7 +35,6 @@ const PlaceFilterDropdownItems = ({ filterTitle, defaultItem, items, onChangeVal
           itemStyle={isIOS ? undefined : styles.pickerItem}
           onValueChange={(itemValue) => onChangeValue(itemValue as string)}
           enabled={isEnabled(items)}
-          shouldRasterizeIOS={true}
         >
           {items.map((item, index) => {
             return (

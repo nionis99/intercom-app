@@ -95,21 +95,20 @@ const coloredStyles = (themeColors: ThemeColors, theme: Theme) =>
       marginBottom: 16,
     },
     listContainer: {
+      display: 'flex',
+      justifyContent: 'center',
       backgroundColor: theme.dark ? themeColors.midGrey : themeColors.white,
     },
     actions: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'center',
     },
     icons: {
-      height: '100%',
-      paddingHorizontal: 16,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
+      marginHorizontal: 16,
     },
     touch: {
+      display: 'flex',
+      justifyContent: 'center',
       height: 30,
     },
   });
