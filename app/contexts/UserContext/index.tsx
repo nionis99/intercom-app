@@ -46,6 +46,8 @@ const UserProvider = ({ children }: { children: JSX.Element }) => {
 
   if (isLoading || authorizationLoading || placeLoading) return <LoadingView />;
 
+  console.log(selectedFlatId);
+
   const contextValue = {
     selectedProject,
     setSelectedProject,

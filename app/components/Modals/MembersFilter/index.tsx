@@ -36,7 +36,7 @@ const MembersFilterModal = ({ isFilterModalVisible, setIsFilterModalVisible }: P
   } = usePlaceValues(placeData);
 
   return (
-    <ModalView show={isFilterModalVisible} onClose={setIsFilterModalVisible}>
+    <ModalView show={isFilterModalVisible} onClose={() => setIsFilterModalVisible(false)}>
       <View style={styles.outerContainer}>
         <Text type={TextTypes.H1} style={styles.modalTitle}>
           {t('flat_filter')}

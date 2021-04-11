@@ -1,4 +1,4 @@
-import React, { ReactNode, SetStateAction } from 'react';
+import React, { ReactNode } from 'react';
 import { Modal, StyleSheet, TouchableHighlight } from 'react-native';
 import { Theme } from '@react-navigation/native';
 
@@ -8,7 +8,7 @@ import useColoredStyles from '#hooks/useColoredStyles';
 
 interface Props {
   show: boolean;
-  onClose: React.Dispatch<SetStateAction<boolean>>;
+  onClose: () => void;
   children: ReactNode;
 }
 
@@ -22,13 +22,9 @@ const ModalView = ({ show, onClose, children }: Props) => {
       presentationStyle="overFullScreen"
       transparent={true}
       animationType="slide"
-      onRequestClose={() => onClose(false)}
+      onRequestClose={onClose}
     >
-      <TouchableHighlight
-        style={coloredStyles.background}
-        onPressOut={() => onClose(false)}
-        underlayColor={'transparent'}
-      >
+      <TouchableHighlight style={coloredStyles.background} onPressOut={onClose} underlayColor={'transparent'}>
         <></>
       </TouchableHighlight>
       {children}

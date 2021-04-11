@@ -81,9 +81,11 @@ export const usePlaceValues = (placeData: Place[]) => {
   const changeFlatNumber = useCallback(
     (value: string) => {
       setSelectedFlat(value);
-      setSelectedFlatId(placeData.find((place) => place.flat_no === value)?.id.toString() || '');
+      setSelectedFlatId(
+        placeData.find((place) => place.flat_no === value && place.project === selectedProject)?.id.toString() || ''
+      );
     },
-    [placeData, setSelectedFlat, setSelectedFlatId]
+    [placeData, selectedProject, setSelectedFlat, setSelectedFlatId]
   );
 
   return {
