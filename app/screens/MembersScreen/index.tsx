@@ -9,7 +9,7 @@ import { deleteMember, getMembers } from '#redux/actions/Members';
 import useColoredStyles from '#hooks/useColoredStyles';
 import Text, { TextTypes } from '#components/Text';
 import LoadingView from '#components/LoadingView';
-import DeleteModal from '#components/Modals/DeleteModal';
+import DeleteMemberModal from '#components/Modals/DeleteMemberModal';
 import { ThemeColors } from '#utils/theme/types';
 import MembersList from '#components/Lists/Members';
 import EditMemberModal from '#components/Modals/EditMember';
@@ -52,7 +52,7 @@ function MembersScreen() {
         setDeletingMemberId={setDeletingMemberId}
         setEditingMember={setEditingMember}
       />
-      <DeleteModal
+      <DeleteMemberModal
         title={t('delete_member')}
         isDeleteModalShown={!!deletingMemberId}
         setDeletingMemberId={setDeletingMemberId}

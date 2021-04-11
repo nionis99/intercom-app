@@ -16,7 +16,7 @@ interface Props {
   isLoading: boolean;
 }
 
-const DeleteModal = ({ title, isDeleteModalShown, setDeletingMemberId, onDeleteModal, isLoading }: Props) => {
+const DeleteMemberModal = ({ title, isDeleteModalShown, setDeletingMemberId, onDeleteModal, isLoading }: Props) => {
   const { t } = useTranslation();
   const styles = useColoredStyles(coloredStyles);
 
@@ -46,6 +46,7 @@ const coloredStyles = (themeColors: ThemeColors) =>
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
+      paddingHorizontal: 12,
     },
     modalText: {
       margin: 8,
@@ -63,4 +64,4 @@ const coloredStyles = (themeColors: ThemeColors) =>
     },
   });
 
-export default DeleteModal;
+export default DeleteMemberModal;

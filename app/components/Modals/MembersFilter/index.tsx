@@ -38,41 +38,43 @@ const MembersFilterModal = ({ isFilterModalVisible, setIsFilterModalVisible }: P
   return (
     <ModalView show={isFilterModalVisible} onClose={() => setIsFilterModalVisible(false)}>
       <View style={styles.outerContainer}>
-        <Text type={TextTypes.H1} style={styles.modalTitle}>
-          {t('flat_filter')}
-        </Text>
-        <SafeAreaView style={styles.contentContainer}>
-          <ScrollView>
-            <PlaceFilterDropdownItems
-              filterTitle={t('select_project')}
-              defaultItem={selectedProject}
-              items={uniqueProjects}
-              onChangeValue={changeProject}
-            />
-            <PlaceFilterDropdownItems
-              filterTitle={t('select_street')}
-              defaultItem={selectedAddress}
-              items={uniqueStreets}
-              onChangeValue={changeAddress}
-            />
-            <View style={styles.numbersDropdownContainer}>
+        <ScrollView>
+          <Text type={TextTypes.H1} style={styles.modalTitle}>
+            {t('flat_filter')}
+          </Text>
+          <SafeAreaView style={styles.contentContainer}>
+            <ScrollView>
               <PlaceFilterDropdownItems
-                filterTitle={t('select_house')}
-                defaultItem={selectedHouse}
-                items={uniqueHouseNumbers}
-                onChangeValue={changeHouseNumber}
-                containerStyle={styles.numbersDropdown}
+                filterTitle={t('select_project')}
+                defaultItem={selectedProject}
+                items={uniqueProjects}
+                onChangeValue={changeProject}
               />
               <PlaceFilterDropdownItems
-                filterTitle={t('select_flat')}
-                defaultItem={selectedFlat}
-                items={uniqueFlatNumbers}
-                onChangeValue={changeFlatNumber}
-                containerStyle={styles.numbersDropdown}
+                filterTitle={t('select_street')}
+                defaultItem={selectedAddress}
+                items={uniqueStreets}
+                onChangeValue={changeAddress}
               />
-            </View>
-          </ScrollView>
-        </SafeAreaView>
+              <View style={styles.numbersDropdownContainer}>
+                <PlaceFilterDropdownItems
+                  filterTitle={t('select_house')}
+                  defaultItem={selectedHouse}
+                  items={uniqueHouseNumbers}
+                  onChangeValue={changeHouseNumber}
+                  containerStyle={styles.numbersDropdown}
+                />
+                <PlaceFilterDropdownItems
+                  filterTitle={t('select_flat')}
+                  defaultItem={selectedFlat}
+                  items={uniqueFlatNumbers}
+                  onChangeValue={changeFlatNumber}
+                  containerStyle={styles.numbersDropdown}
+                />
+              </View>
+            </ScrollView>
+          </SafeAreaView>
+        </ScrollView>
       </View>
     </ModalView>
   );

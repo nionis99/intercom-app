@@ -68,8 +68,6 @@ const MemberForm = ({ editingMember, onSubmit, onCancel }: Props) => {
     },
   });
 
-  console.log('editing value', editingMember?.is_active);
-
   return (
     <View style={styles.form}>
       <View style={styles.status}>

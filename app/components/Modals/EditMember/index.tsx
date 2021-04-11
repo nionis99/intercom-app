@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import useColoredStyles from '#hooks/useColoredStyles';
 import MemberForm, { MemberFormInputs } from '#components/Forms/MemberForm';
@@ -14,8 +14,8 @@ import Member from '#types/Member';
 
 interface Props {
   editingMember: Maybe<Member>;
-  onClose: () => void;
   show: boolean;
+  onClose: () => void;
 }
 
 const EditMemberModal = ({ editingMember, show, onClose }: Props) => {
@@ -32,18 +32,25 @@ const EditMemberModal = ({ editingMember, show, onClose }: Props) => {
 
   return (
     <ModalView show={show} onClose={onClose}>
-      <View style={coloredStyles.modalContent}>
-        <Text type={TextTypes.H2} style={coloredStyles.sectionTitle}>
-          {t('edit_member')}
-        </Text>
-        {editingMember && <MemberForm editingMember={editingMember} onSubmit={onUpdateMember} onCancel={onClose} />}
-      </View>
+      <ScrollView style={coloredStyles.scroll}>
+        <View style={coloredStyles.modalContent}>
+          <Text type={TextTypes.H2} style={coloredStyles.sectionTitle}>
+            {t('edit_member')}
+          </Text>
+          {editingMember && <MemberForm editingMember={editingMember} onSubmit={onUpdateMember} onCancel={onClose} />}
+        </View>
+      </ScrollView>
     </ModalView>
   );
 };
 
 const styles = (themeColors: ThemeColors) =>
   StyleSheet.create({
+    scroll: {
+      width: '100%',
+      height: '100%',
+      backgroundColor: themeColors.background,
+    },
     modalContent: {
       backgroundColor: themeColors.background,
       display: 'flex',
