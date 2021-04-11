@@ -40,7 +40,7 @@ const PlaceFilterDropdownItems = ({ filterTitle, defaultItem, items, onChangeVal
           {items.map((item, index) => {
             return (
               <Picker.Item
-                color={theme.dark ? theme.colors.white : theme.colors.black}
+                color={theme.dark && isIOS ? theme.colors.white : theme.colors.black}
                 label={item}
                 value={item}
                 key={index}

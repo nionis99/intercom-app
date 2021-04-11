@@ -3,6 +3,7 @@
     "loading": "Loading...",
     "oops_error": "Oops! An error occured...",
     "reported_to_us": "An error is reported to us.",
+    "restart_the_application": "Press the button below to restart the application.",
     "restart_application_button": "Restart application",
     "please_log_in": "Please log in to continue",
     "logging_out": "Logging out...",
@@ -26,6 +27,7 @@
     "select_project": "Select project",
     "select_street": "Select address",
     "select_house": "Select house",
-    "select_flat": "Select apartment"
+    "select_flat": "Select apartment",
+    "user": "User"
   }
 }

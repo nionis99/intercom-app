@@ -3,6 +3,7 @@
     "loading": "Kraunama...",
     "oops_error": "Oops! An error occured...",
     "reported_to_us": "An error is reported to us.",
+    "restart_the_application": "Paspauskite mygtuką žemiau, kad perkrautumėte aplikaciją",
     "restart_application_button": "Perkrauti aplikaciją",
     "please_log_in": "Prisijunkite norėdami tęsti",
     "logging_out": "Atsijungiama...",
@@ -26,6 +27,7 @@
     "select_project": "Pasirinkite projektą",
     "select_street": "Pasirinkite gatvę",
     "select_house": "Pasirinkite namą",
-    "select_flat": "Pasirinkite butą"
+    "select_flat": "Pasirinkite butą",
+    "user": "Vartotojas"
   }
 }
