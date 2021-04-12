@@ -1,5 +1,5 @@
 import React, { SetStateAction } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import useColoredStyles from '#hooks/useColoredStyles';
@@ -22,7 +22,7 @@ const DeleteMemberModal = ({ title, isDeleteModalShown, setDeletingMemberId, onD
 
   return (
     <ModalView show={isDeleteModalShown} onClose={() => setDeletingMemberId(null)}>
-      <View style={styles.modalRoot}>
+      <SafeAreaView style={styles.modalRoot}>
         <Text type={TextTypes.H2} style={styles.modalText}>
           {title}
         </Text>
@@ -34,7 +34,7 @@ const DeleteMemberModal = ({ title, isDeleteModalShown, setDeletingMemberId, onD
             {t('delete')}
           </Button>
         </View>
-      </View>
+      </SafeAreaView>
     </ModalView>
   );
 };
