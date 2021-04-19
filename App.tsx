@@ -3,6 +3,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { AppearanceProvider } from 'react-native-appearance';
 
 import { AppContextProvider } from '#contexts/AppContext';
+import NetworkStatusBar from '#contexts/NetworkConnectionBar';
 import UserProvider from '#contexts/UserContext';
 import ErrorBoundary from '#components/ErrorBoundary';
 import Navigation from '#navigation';
@@ -12,11 +13,13 @@ const App = () => (
   <ReduxProvider store={store}>
     <ErrorBoundary>
       <AppearanceProvider>
-        <AppContextProvider>
-          <UserProvider>
-            <Navigation />
-          </UserProvider>
-        </AppContextProvider>
+        <NetworkStatusBar>
+          <AppContextProvider>
+            <UserProvider>
+              <Navigation />
+            </UserProvider>
+          </AppContextProvider>
+        </NetworkStatusBar>
       </AppearanceProvider>
     </ErrorBoundary>
   </ReduxProvider>

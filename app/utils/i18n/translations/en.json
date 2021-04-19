@@ -45,6 +45,7 @@
     "pin": "PIN code",
     "required_pin_code": "PIN code is required",
     "pin_format": "Pin code must be only digits",
-    "name": "Name"
+    "name": "Name",
+    "no_internet": "No internet connection"
   }
 }

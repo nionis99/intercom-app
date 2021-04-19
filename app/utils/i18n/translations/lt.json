@@ -45,6 +45,7 @@
     "pin": "PIN kodas",
     "required_pin_code": "PIN kodas privalomas",
     "pin_format": "Pin kodas turi būti tik iš skaitmenų",
-    "name": "Vardas"
+    "name": "Vardas",
+    "no_internet": "Nėra interneto ryšio"
   }
 }
