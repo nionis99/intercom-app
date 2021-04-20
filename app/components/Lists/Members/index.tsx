@@ -2,15 +2,15 @@ import React, { SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Avatar, ListItem } from 'react-native-elements';
-import { Theme } from '@react-navigation/native';
+import { Theme, useNavigation } from '@react-navigation/native';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
 import EvilIcon from 'react-native-vector-icons/EvilIcons';
 
 import useColoredStyles from '#hooks/useColoredStyles';
 import { useAppState } from '#contexts/AppContext';
 import { DEFAULT_MEMBER_NAME } from '#utils/constants';
-import Member from '#types/Member';
 import { ThemeColors } from '#utils/theme/types';
+import Member from '#types/Member';
 import avatarSrc from '#assets/images/user.png';
 
 interface Props {
@@ -22,12 +22,15 @@ interface Props {
 const MembersList = ({ membersData, setDeletingMemberId, setEditingMember }: Props) => {
   const { t } = useTranslation();
   const { theme } = useAppState();
+  const navigation = useNavigation();
   const styles = useColoredStyles(coloredStyles, theme);
+
+  const navigateToMember = (member: Member) => navigation.navigate('Member', { member });
 
   return (
     <ScrollView style={styles.scroll} contentContainerStyle={styles.contentContainer}>
       {membersData.map((member) => (
-        <TouchableOpacity onPress={() => console.log('/member')} key={member.id}>
+        <TouchableOpacity onPress={() => navigateToMember(member)} key={member.id}>
           <ListItem bottomDivider containerStyle={styles.listContainer}>
             <FAIcon name="circle" color={member.is_active ? theme.colors.lightGreen : theme.colors.danger} size={20} />
             <Avatar source={avatarSrc} />

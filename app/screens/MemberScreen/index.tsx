@@ -1,40 +1,58 @@
-import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-// import { StackNavigationProp } from '@react-navigation/stack';
-import { /*CompositeNavigationProp, */ RouteProp } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { RouteProp } from '@react-navigation/native';
 
 import useColoredStyles from '#hooks/useColoredStyles';
-import { MemberStackParamList } from '#navigation/AuthorizedStack/MemberStack';
-// import { AuthorizedStackParamList } from '#navigation/AuthorizedStack';
 import Text, { TextTypes } from '#components/Text';
 import { ThemeColors } from '#utils/theme/types';
+import { getCards } from '#redux/actions/Cards';
+import { MembersStackParamList } from '#navigation/AuthorizedStack/BottomTabs/MembersStack';
+import { useStateSelector } from '#hooks/useReduxStateSelector';
+import LoadingView from '#components/LoadingView';
+import CardsList from '#components/Lists/Cards';
+import { DEFAULT_MEMBER_NAME } from '#utils/constants';
+import Divider from '#components/Divider';
 
-// export type ScreenNavigationProp = CompositeNavigationProp<
-//   StackNavigationProp<MemberStackParamList, 'Member'>,
-//   StackNavigationProp<AuthorizedStackParamList>
-// >;
-
-type ScreenRouteProp = RouteProp<MemberStackParamList, 'Member'>;
+type MembersScreenRouteProps = RouteProp<MembersStackParamList, 'Member'>;
 
 type Props = {
-  // navigation: ScreenNavigationProp;
-  route: ScreenRouteProp;
+  route: MembersScreenRouteProps;
 };
 
 function MemberScreen({ route }: Props) {
   const { t } = useTranslation();
+  const { member } = route.params;
+  const dispatch = useDispatch();
   const styles = useColoredStyles(coloredStyles);
-  const { memberId } = route.params;
-  console.log(memberId);
+  const { cardsData, cardsLoading } = useStateSelector((state) => state.cards);
+
+  useEffect(() => {
+    dispatch(getCards(member.id));
+  }, [dispatch, member]);
+
+  if (cardsLoading) return <LoadingView />;
 
   return (
     <SafeAreaView style={styles.root}>
-      <ScrollView style={styles.scroll} contentContainerStyle={styles.contentContainer}>
-        <Text type={TextTypes.H3} style={styles.userText}>
-          {t('member')}
+      <View style={styles.memberInfo}>
+        <Divider />
+        <Text type={TextTypes.H4} style={styles.memberInfoText}>
+          {t('name')} : {member.name || t(DEFAULT_MEMBER_NAME)}
         </Text>
-      </ScrollView>
+        <Text type={TextTypes.H4} style={styles.memberInfoText}>
+          {t('email')} : {member.email || '-'}
+        </Text>
+        <Text type={TextTypes.H4} style={styles.memberInfoText}>
+          {t('phone')} : {member.phone || '-'}
+        </Text>
+        <Text type={TextTypes.H4} style={styles.memberInfoText}>
+          {t('pin')} : {member.pin || '-'}
+        </Text>
+        <Divider />
+      </View>
+      <CardsList cardsData={cardsData} setDeletingCardId={() => null} setEditingCard={() => null} />
     </SafeAreaView>
   );
 }
@@ -44,29 +62,13 @@ const coloredStyles = (themeColors: ThemeColors) =>
     root: {
       backgroundColor: themeColors.background,
     },
-    scroll: {
-      width: '100%',
-      height: '100%',
-      flexDirection: 'column',
-    },
-    contentContainer: {
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    },
-    userText: {
-      marginTop: 24,
-      marginBottom: 16,
-    },
-    buttons: {
-      width: '60%',
-      flexDirection: 'column',
+    memberInfo: {
+      display: 'flex',
       justifyContent: 'center',
-      alignContent: 'center',
-      marginTop: 40,
-      marginBottom: 32,
+      alignItems: 'center',
     },
-    button: {
-      marginTop: 8,
+    memberInfoText: {
+      marginVertical: 8,
     },
   });
 

@@ -5,17 +5,17 @@ import { StyleSheet, Switch, View } from 'react-native';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
+import { useUserState } from '#contexts/UserContext';
 import { useStateSelector } from '#hooks/useReduxStateSelector';
 import useColoredStyles from '#hooks/useColoredStyles';
 import Button, { ButtonType } from '#components/Buttons';
 import Text, { TextTypes } from '#components/Text';
 import Input from '#components/Input';
 import { ThemeColors } from '#utils/theme/types';
+import { LightThemeColors } from '#utils/theme/colors';
 import { DEFAULT_MEMBER_NAME } from '#utils/constants';
 import { Maybe } from '#types';
 import Member from '#types/Member';
-import { useUserState } from '#contexts/UserContext';
-import { LightThemeColors } from '#utils/theme/colors';
 
 export interface MemberFormInputs {
   id: number;

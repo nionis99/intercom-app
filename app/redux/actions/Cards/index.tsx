@@ -57,7 +57,7 @@ const setCardsData = (cards: Card[]): CardsActionTypes => ({
 //   id,
 // });
 
-export const getCards = (memberId: string) => (dispatch: Dispatch) => {
+export const getCards = (memberId: number) => (dispatch: Dispatch) => {
   dispatch(getCardsLoading(true));
   const dispatchSuccess = (response: AxiosResponse) => dispatch(setCardsData(response.data));
   const dispatchLoading = () => dispatch(getCardsLoading(false));

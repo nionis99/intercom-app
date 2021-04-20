@@ -7,7 +7,6 @@ import { useUserState } from '#contexts/UserContext';
 import { useStateSelector } from '#hooks/useReduxStateSelector';
 import { deleteMember, getMembers } from '#redux/actions/Members';
 import useColoredStyles from '#hooks/useColoredStyles';
-import Text, { TextTypes } from '#components/Text';
 import LoadingView from '#components/LoadingView';
 import DeleteMemberModal from '#components/Modals/DeleteMemberModal';
 import { ThemeColors } from '#utils/theme/types';
@@ -36,14 +35,6 @@ function MembersScreen() {
   };
 
   if (membersLoading) return <LoadingView />;
-
-  if (membersData.length === 0) {
-    return (
-      <Text type={TextTypes.H3} style={styles.userText}>
-        {t('no_members')}
-      </Text>
-    );
-  }
 
   return (
     <SafeAreaView style={styles.root}>
