@@ -1167,18 +1167,18 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/picker/-/picker-1.8.1.tgz#94f14f0aad98fa7592967b941be97deec95c3805"
   integrity sha512-Sj9DzX1CSnmYiuEQ5fQhExoo4XjSKoZkqLPAAybycq6RHtCuWppf+eJXRMCOJki25BlKSSt+qVqg0fIe//ujNQ==
 
-"@react-native-firebase/app@^11.3.2":
-  version "11.3.2"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-11.3.2.tgz#43971445306cde2d09ce3022e0efae5549b47095"
-  integrity sha512-6W+Wrnj9X3zCicwWs/fMRMPhdSCNDASeypltmqAGr0jupdB5eV3dd0BoQa10xT6yw8U5QBvZSS0jXHrPWcIIdA==
+"@react-native-firebase/app@^10.1.0":
+  version "10.8.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-10.8.1.tgz#3455f491a5fc3d91677fd69e70b006a68fb7ca5c"
+  integrity sha512-EHbFGCbRdZMxSbdq5YCc47E9C+ckzsMeZdknJbSddTYJ9JxPDiorUyoHFOUCAHS2ZoklhpdlrU5zGNzxpBgDUw==
   dependencies:
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/messaging@^11.3.2":
-  version "11.3.2"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-11.3.2.tgz#9ada09b6f7f34e9612636e05c9813892866832b4"
-  integrity sha512-8P8P328Asxri5/70bZDg7Fd2vPPeN1dAEHuKBKUsXHJVNzNpu6qxkArpWXyn5vJAOYY/Tny5fb2pydiDUdQkEg==
+"@react-native-firebase/messaging@^10.1.0":
+  version "10.8.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-10.8.1.tgz#da9e0db91645e70e7853e5b91c06771fffbea8bb"
+  integrity sha512-DVgibb4XERG+5TQQiHKJ1qF+5cbpfiKGRFze9WcbE+FxSYwNMIzyt6u3l7WMBLz6wXcqAq3zLRo6SBbSt37uDw==
 
 "@react-navigation/bottom-tabs@^5.9.0":
   version "5.11.8"
