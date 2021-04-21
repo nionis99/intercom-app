@@ -27,6 +27,8 @@
     "card_deleted": "Card was deleted!",
     "card_created": "Card was created!",
     "card_updated": "Card was updated!",
+    "card_no": "Card number",
+    "type": "Card type",
     "delete": "Delete",
     "cancel": "Cancel",
     "create": "Create",

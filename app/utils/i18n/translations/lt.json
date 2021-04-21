@@ -1,8 +1,8 @@
 {
   "translation": {
     "loading": "Kraunama...",
-    "oops_error": "Oops! An error occured...",
-    "reported_to_us": "An error is reported to us.",
+    "oops_error": "Ups! Įvyko klaida...",
+    "reported_to_us": "Klaida išsiųsta mums.",
     "restart_the_application": "Paspauskite mygtuką žemiau, kad perkrautumėte aplikaciją",
     "restart_application_button": "Perkrauti aplikaciją",
     "please_log_in": "Prisijunkite norėdami tęsti",
@@ -27,6 +27,8 @@
     "card_deleted": "Kortelė ištrinta!",
     "card_created": "Kortelė sukurta!",
     "card_updated": "Kortelės duomenys pakeisti!",
+    "card_no": "Kortelės numeris",
+    "type": "Kortelės tipas",
     "delete": "Ištrinti",
     "cancel": "Atšaukti",
     "create": "Sukurti",

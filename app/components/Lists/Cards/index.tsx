@@ -4,12 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { ListItem } from 'react-native-elements';
 import { Theme } from '@react-navigation/native';
 import EvilIcon from 'react-native-vector-icons/EvilIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import useColoredStyles from '#hooks/useColoredStyles';
 import { useAppState } from '#contexts/AppContext';
+import EmptyDataView from '#components/EmptyData';
+import { Text, TextTypes } from '#components/Text';
 import { ThemeColors } from '#utils/theme/types';
 import Card from '#types/Card';
-import EmptyDataView from '#components/EmptyData';
 
 interface Props {
   cardsData: Card[];
@@ -29,8 +31,15 @@ const CardsList = ({ cardsData, setDeletingCardId, setEditingCard }: Props) => {
       {cardsData.map((card) => (
         <ListItem bottomDivider containerStyle={styles.listContainer} key={card.id}>
           <ListItem.Content>
-            <ListItem.Title style={styles.listTitle}>{card.card_no}</ListItem.Title>
-            <ListItem.Subtitle style={styles.listSubtitle}>{card.type}</ListItem.Subtitle>
+            <ListItem.Title style={styles.listTitle}>
+              {card.card_no}
+              <View>
+                <MaterialIcon name="smart-card" size={20} color={theme.colors.primary} style={styles.cardIcon} />
+              </View>
+            </ListItem.Title>
+            <Text type={TextTypes.H4}>
+              {t('note')} : {card.note}
+            </Text>
           </ListItem.Content>
           <ListItem.Content right={true}>
             <View style={styles.actions}>
@@ -64,11 +73,17 @@ const coloredStyles = (themeColors: ThemeColors, theme: Theme) =>
       justifyContent: 'center',
       backgroundColor: theme.dark ? themeColors.black : themeColors.white,
     },
-    listTitle: { color: theme.dark ? themeColors.white : themeColors.black },
+    listTitle: {
+      textAlign: 'center',
+      color: theme.dark ? themeColors.white : themeColors.black,
+    },
     listSubtitle: { color: themeColors.midGrey },
     actions: {
       display: 'flex',
       flexDirection: 'row',
+    },
+    cardIcon: {
+      marginLeft: 8,
     },
     editIcon: {
       marginHorizontal: 16,

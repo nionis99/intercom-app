@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { ItemValue } from '@react-native-community/picker/typings/Picker';
+import { isIOS } from 'react-native-elements/dist/helpers';
+import { Theme, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, View } from 'react-native';
@@ -13,15 +15,18 @@ import Button, { ButtonType } from '#components/Buttons';
 import Text, { TextTypes } from '#components/Text';
 import Input from '#components/Input';
 import LoadingView from '#components/LoadingView';
-import { getCardTypes } from '#redux/actions/CardTypes';
 import { ThemeColors } from '#utils/theme/types';
 import Card from '#types/Card';
+
+import { MembersScreenRouteProps } from '#screens/MemberScreen';
+
+import { useAppState } from '#contexts/AppContext';
 
 export interface CardFormInputs {
   id: number;
   account_id: number;
   card_no: string;
-  type_id: string;
+  type_id: number;
   type: string;
   note: string;
 }
@@ -41,16 +46,15 @@ interface Props {
 
 const CardForm = ({ editingCard, onSubmit, onCancel }: Props) => {
   const { t } = useTranslation();
-  const styles = useColoredStyles(coloredStyles);
-  const dispatch = useDispatch();
+  const { theme } = useAppState();
+  const styles = useColoredStyles(coloredStyles, theme);
+  const { params: routeParams } = useRoute<MembersScreenRouteProps>();
   const { cardTypesLoading, cardTypesData } = useStateSelector((state) => state.cardTypes);
   const { createLoading, updateLoading } = useStateSelector((state) => state.cards);
+  const [cardTypeId, setCardTypeId] = useState(cardTypesData[0]?.id.toString());
+  const [cardType, setCardType] = useState(cardTypesData[0]?.name);
 
-  useEffect(() => {
-    dispatch(getCardTypes());
-  }, [dispatch]);
-
-  const { control, handleSubmit, errors, setValue } = useForm({
+  const { control, handleSubmit, errors } = useForm({
     mode: 'all',
     resolver: yupResolver(cardSchema),
     defaultValues: {
@@ -62,9 +66,18 @@ const CardForm = ({ editingCard, onSubmit, onCancel }: Props) => {
     },
   });
 
-  const onFormSubmit = (data: CardFormInputs) => {
-    console.log(data);
-    return onSubmit(data);
+  const onFormSubmit = (data: CardFormInputs) =>
+    onSubmit({
+      ...data,
+      account_id: routeParams.member.id,
+      type: cardType,
+      type_id: parseInt(cardTypeId, 0),
+    });
+
+  const onTypeChange = (value: ItemValue) => {
+    const typeIndex = cardTypesData.findIndex((cardType) => cardType.id === value);
+    setCardTypeId(value.toString());
+    setCardType(cardTypesData[typeIndex].name);
   };
 
   if (cardTypesLoading) return <LoadingView />;
@@ -90,17 +103,21 @@ const CardForm = ({ editingCard, onSubmit, onCancel }: Props) => {
       <Text type={TextTypes.H4} style={styles.formText}>
         {t('type')}
       </Text>
-      <Controller
-        control={control}
-        render={({ value }) => (
-          <Picker selectedValue={value} onValueChange={(itemValue) => setValue('type', itemValue)}>
-            {cardTypesData.map((cardType) => (
-              <Picker.Item key={cardType.id} label={cardType.name} value={cardType.id} />
-            ))}
-          </Picker>
-        )}
-        name="type_id"
-      />
+      <Picker
+        selectedValue={cardTypeId}
+        onValueChange={onTypeChange}
+        style={isIOS ? undefined : styles.picker}
+        itemStyle={isIOS ? undefined : styles.pickerItem}
+      >
+        {cardTypesData.map((cardType) => (
+          <Picker.Item
+            color={theme.dark && isIOS ? theme.colors.white : theme.colors.black}
+            key={cardType.id}
+            label={cardType.name}
+            value={cardType.id}
+          />
+        ))}
+      </Picker>
       {!!errors.type?.message && <Text style={styles.errorText}>{t(errors.type.message)}</Text>}
       <Text type={TextTypes.H4} style={styles.formText}>
         {t('note')}
@@ -135,7 +152,7 @@ const CardForm = ({ editingCard, onSubmit, onCancel }: Props) => {
   );
 };
 
-const coloredStyles = (themeColors: ThemeColors) =>
+const coloredStyles = (themeColors: ThemeColors, theme: Theme) =>
   StyleSheet.create({
     form: {
       width: '80%',
@@ -164,6 +181,13 @@ const coloredStyles = (themeColors: ThemeColors) =>
       marginLeft: 4,
       marginBottom: 8,
       color: themeColors.danger,
+    },
+    picker: {
+      color: theme.dark ? themeColors.white : themeColors.black,
+      height: 50,
+    },
+    pickerItem: {
+      color: themeColors.black,
     },
   });
 

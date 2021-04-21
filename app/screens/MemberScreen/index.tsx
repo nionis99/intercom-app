@@ -17,8 +17,9 @@ import Divider from '#components/Divider';
 import EditCardModal from '#components/Modals/EditCard';
 import Card from '#types/Card';
 import DeleteModal from '#components/Modals/DeleteModal';
+import { getCardTypes } from '#redux/actions/CardTypes';
 
-type MembersScreenRouteProps = RouteProp<MembersStackParamList, 'Member'>;
+export type MembersScreenRouteProps = RouteProp<MembersStackParamList, 'Member'>;
 
 type Props = {
   route: MembersScreenRouteProps;
@@ -39,8 +40,11 @@ function MemberScreen({ route }: Props) {
     dispatch(getCards(member.id));
   }, [dispatch, member]);
 
+  useEffect(() => {
+    dispatch(getCardTypes());
+  }, [dispatch]);
+
   const onDeleteCard = async () => {
-    console.log('trinti');
     if (deletingCardId) await dispatch(deleteCard(deletingCardId, deleteResponseText));
     setDeletingCardId(null);
   };

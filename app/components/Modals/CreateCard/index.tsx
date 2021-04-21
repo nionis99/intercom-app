@@ -24,6 +24,7 @@ const CreateCardModal = ({ show, onClose }: Props) => {
   const responseText = t('card_created');
 
   const onCreateCard = async (data: CardFormInputs) => {
+    console.log(data);
     await dispatch(createCard(data, responseText));
     onClose();
   };
@@ -45,6 +46,7 @@ const CreateCardModal = ({ show, onClose }: Props) => {
 const styles = (themeColors: ThemeColors) =>
   StyleSheet.create({
     scroll: {
+      height: '100%',
       width: '100%',
       backgroundColor: themeColors.background,
     },
