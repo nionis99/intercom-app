@@ -32,7 +32,12 @@ export interface CardFormInputs {
 }
 
 const cardSchema = yup.object().shape({
-  card_no: yup.string().required('card_no_required'),
+  card_no: yup
+    .string()
+    .required('card_no_required')
+    .min(8, 'card_no_length')
+    .max(8, 'card_no_length')
+    .matches(/^[0-9]*$/, 'card_no_format'),
   type_id: yup.string(),
   type: yup.string(),
   note: yup.string().trim(),

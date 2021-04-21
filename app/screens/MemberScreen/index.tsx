@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { RouteProp } from '@react-navigation/native';
@@ -52,7 +52,7 @@ function MemberScreen({ route }: Props) {
   if (cardsLoading) return <LoadingView />;
 
   return (
-    <SafeAreaView style={styles.root}>
+    <View style={styles.root}>
       <View style={styles.memberInfo}>
         <Divider />
         <Text type={TextTypes.H4} style={styles.memberInfoText}>
@@ -78,13 +78,14 @@ function MemberScreen({ route }: Props) {
         onDeleteModal={onDeleteCard}
         isLoading={deleteLoading}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 
 const coloredStyles = (themeColors: ThemeColors) =>
   StyleSheet.create({
     root: {
+      flex: 1,
       backgroundColor: themeColors.background,
     },
     memberInfo: {

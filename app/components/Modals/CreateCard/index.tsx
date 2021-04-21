@@ -24,7 +24,6 @@ const CreateCardModal = ({ show, onClose }: Props) => {
   const responseText = t('card_created');
 
   const onCreateCard = async (data: CardFormInputs) => {
-    console.log(data);
     await dispatch(createCard(data, responseText));
     onClose();
   };

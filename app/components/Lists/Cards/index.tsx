@@ -1,5 +1,5 @@
 import React, { SetStateAction } from 'react';
-import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { ListItem } from 'react-native-elements';
 import { Theme } from '@react-navigation/native';
@@ -27,8 +27,9 @@ const CardsList = ({ cardsData, setDeletingCardId, setEditingCard }: Props) => {
   if (cardsData.length === 0) return <EmptyDataView title={t('no_cards')} />;
 
   return (
-    <ScrollView style={styles.scroll} contentContainerStyle={styles.contentContainer}>
-      {cardsData.map((card) => (
+    <FlatList
+      data={cardsData}
+      renderItem={({ item: card }) => (
         <ListItem bottomDivider containerStyle={styles.listContainer} key={card.id}>
           <ListItem.Content>
             <ListItem.Title style={styles.listTitle}>
@@ -37,9 +38,11 @@ const CardsList = ({ cardsData, setDeletingCardId, setEditingCard }: Props) => {
                 <MaterialIcon name="smart-card" size={20} color={theme.colors.primary} style={styles.cardIcon} />
               </View>
             </ListItem.Title>
-            <Text type={TextTypes.H4}>
-              {t('note')} : {card.note}
-            </Text>
+            {!!card.note && (
+              <Text type={TextTypes.H4}>
+                {t('note')} : {card.note}
+              </Text>
+            )}
           </ListItem.Content>
           <ListItem.Content right={true}>
             <View style={styles.actions}>
@@ -52,8 +55,11 @@ const CardsList = ({ cardsData, setDeletingCardId, setEditingCard }: Props) => {
             </View>
           </ListItem.Content>
         </ListItem>
-      ))}
-    </ScrollView>
+      )}
+      keyExtractor={(item) => item.id.toString()}
+      style={styles.scroll}
+      contentContainerStyle={styles.contentContainer}
+    />
   );
 };
 

@@ -27,7 +27,6 @@ const EditCardModal = ({ editingCard, show, onClose }: Props) => {
   const responseText = t('card_updated');
 
   const onUpdateCard = async (data: CardFormInputs) => {
-    console.log(data);
     if (editingCard) await dispatch(updateCard(data, editingCard.id, responseText));
     onClose();
   };
