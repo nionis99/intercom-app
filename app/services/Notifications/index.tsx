@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import messaging from '@react-native-firebase/messaging';
 
 import { useAppState } from '#contexts/AppContext';
+import { onMessage } from './events';
 import useDeviceToken from '#hooks/useDeviceToken';
 
 interface Props {
@@ -16,7 +17,7 @@ const Notifications = ({ children }: Props) => {
     if (user) {
       requestUserPermission();
 
-      return messaging().onMessage((message) => console.log('foregroundMessage', message));
+      return messaging().onMessage(onMessage);
     }
   }, [requestUserPermission, user]);
 

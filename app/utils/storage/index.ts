@@ -43,3 +43,15 @@ export const saveAuthToken = (newToken?: string) => {
     key: `${prefix}:authToken`,
   });
 };
+
+export const getDeviceToken = () =>
+  storage.load<string>({
+    key: `${prefix}:deviceToken`,
+  });
+
+export const saveDeviceToken = (deviceToken: string | null) =>
+  storage.save({
+    key: `${prefix}:deviceToken`,
+    data: deviceToken,
+    expires: null,
+  });
