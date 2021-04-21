@@ -44,6 +44,7 @@
     "react-native-flags-typescript": "^1.0.1",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-keyboard-aware-scroll-view": "0.9.3",
+    "react-native-push-notification": "^7.2.3",
     "react-native-restart": "^0.0.17",
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.11.0",

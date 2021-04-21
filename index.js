@@ -8,6 +8,7 @@ import { name as appName } from './app.json';
 
 Sentry.init({
   dsn: Config.SENTRY_DSN,
+  release: Config.APP_VERSION,
 });
 
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
