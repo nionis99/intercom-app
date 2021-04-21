@@ -55,7 +55,7 @@ const PlaceFilterDropdownItems = ({ filterTitle, defaultItem, items, onChangeVal
 const coloredStyles = (themeColors: ThemeColors, theme: Theme) =>
   StyleSheet.create({
     disabledContent: {
-      borderColor: themeColors.midGreyA(0.2),
+      borderColor: themeColors.midGreyA(0.5),
       borderWidth: 1,
       borderStyle: 'solid',
     },

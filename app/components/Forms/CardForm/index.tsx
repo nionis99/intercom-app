@@ -108,21 +108,26 @@ const CardForm = ({ editingCard, onSubmit, onCancel }: Props) => {
       <Text type={TextTypes.H4} style={styles.formText}>
         {t('type')}
       </Text>
-      <Picker
-        selectedValue={cardTypeId}
-        onValueChange={onTypeChange}
-        style={isIOS ? undefined : styles.picker}
-        itemStyle={isIOS ? undefined : styles.pickerItem}
+      <View
+        style={isIOS ? undefined : [styles.container, cardTypesData.length > 1 ? undefined : styles.disabledContent]}
       >
-        {cardTypesData.map((cardType) => (
-          <Picker.Item
-            color={theme.dark && isIOS ? theme.colors.white : theme.colors.black}
-            key={cardType.id}
-            label={cardType.name}
-            value={cardType.id}
-          />
-        ))}
-      </Picker>
+        <Picker
+          selectedValue={cardTypeId}
+          onValueChange={onTypeChange}
+          style={isIOS ? undefined : styles.picker}
+          itemStyle={isIOS ? undefined : styles.pickerItem}
+          enabled={cardTypesData.length > 1}
+        >
+          {cardTypesData.map((cardType) => (
+            <Picker.Item
+              color={theme.dark && isIOS ? theme.colors.white : theme.colors.black}
+              key={cardType.id}
+              label={cardType.name}
+              value={cardType.id}
+            />
+          ))}
+        </Picker>
+      </View>
       {!!errors.type?.message && <Text style={styles.errorText}>{t(errors.type.message)}</Text>}
       <Text type={TextTypes.H4} style={styles.formText}>
         {t('note')}
@@ -169,6 +174,17 @@ const coloredStyles = (themeColors: ThemeColors, theme: Theme) =>
       marginTop: 4,
       marginBottom: 8,
     },
+    disabledContent: {
+      borderColor: themeColors.midGreyA(0.5),
+      borderWidth: 1,
+      borderStyle: 'solid',
+    },
+    container: {
+      borderColor: theme.dark ? themeColors.white : themeColors.black,
+      borderWidth: 1,
+      borderStyle: 'solid',
+      marginBottom: 8,
+    },
     modalButtons: {
       width: '100%',
       flexDirection: 'row',
@@ -189,7 +205,8 @@ const coloredStyles = (themeColors: ThemeColors, theme: Theme) =>
     },
     picker: {
       color: theme.dark ? themeColors.white : themeColors.black,
-      height: 50,
+      margin: 6,
+      height: 30,
     },
     pickerItem: {
       color: themeColors.black,

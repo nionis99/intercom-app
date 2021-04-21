@@ -12,6 +12,7 @@ import { ThemeColors } from '#utils/theme/types';
 import { Maybe } from '#types';
 import Card from '#types/Card';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { isIOS } from 'react-native-elements/dist/helpers';
 
 interface Props {
   editingCard: Maybe<Card>;
@@ -49,7 +50,7 @@ const styles = (themeColors: ThemeColors) =>
   StyleSheet.create({
     scroll: {
       width: '100%',
-      height: '100%',
+      height: isIOS ? '70%' : undefined,
       backgroundColor: themeColors.background,
     },
     modalContent: {

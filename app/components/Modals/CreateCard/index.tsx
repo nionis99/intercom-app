@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, StyleSheet } from 'react-native';
+import { isIOS } from 'react-native-elements/dist/helpers';
 
 import useColoredStyles from '#hooks/useColoredStyles';
 import ModalView from '#components/Modals';
@@ -45,7 +46,7 @@ const CreateCardModal = ({ show, onClose }: Props) => {
 const styles = (themeColors: ThemeColors) =>
   StyleSheet.create({
     scroll: {
-      height: '100%',
+      height: isIOS ? '70%' : undefined,
       width: '100%',
       backgroundColor: themeColors.background,
     },
