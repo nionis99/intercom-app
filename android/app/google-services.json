@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "749004869698",
+    "project_id": "intercom-2357c",
+    "storage_bucket": "intercom-2357c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749004869698:android:60b3f2931376729347dddb",
+        "android_client_info": {
+          "package_name": "com.intercom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749004869698-bildrcetn8162fdfl7jpggo3fo8hla8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVOuOBEvgJ2Y3HtaUGGmjgfpI_Y17IjJ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749004869698-bildrcetn8162fdfl7jpggo3fo8hla8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "749004869698-2tg8dngpjpv976oh28rss21aqqa6j07o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.intercom"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

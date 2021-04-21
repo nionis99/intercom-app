@@ -6,6 +6,7 @@ import { AppContextProvider } from '#contexts/AppContext';
 import NetworkStatusBar from '#contexts/NetworkConnectionBar';
 import UserProvider from '#contexts/UserContext';
 import ErrorBoundary from '#components/ErrorBoundary';
+import Notifications from '#services/Notifications';
 import Navigation from '#navigation';
 import store from '#redux/store';
 
@@ -16,7 +17,9 @@ const App = () => (
         <NetworkStatusBar>
           <AppContextProvider>
             <UserProvider>
-              <Navigation />
+              <Notifications>
+                <Navigation />
+              </Notifications>
             </UserProvider>
           </AppContextProvider>
         </NetworkStatusBar>
