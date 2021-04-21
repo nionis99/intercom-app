@@ -3,28 +3,32 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, StyleSheet } from 'react-native';
 
-import ModalView from '#components/Modals';
-import MemberForm, { MemberFormInputs } from '#components/Forms/MemberForm';
-import Text, { TextTypes } from '#components/Text';
-import { ThemeColors } from '#utils/theme/types';
 import useColoredStyles from '#hooks/useColoredStyles';
-import { createMember } from '#redux/actions/Members';
+import CardForm, { CardFormInputs } from '#components/Forms/CardForm';
+import ModalView from '#components/Modals';
+import Text, { TextTypes } from '#components/Text';
+import { updateCard } from '#redux/actions/Cards';
+import { ThemeColors } from '#utils/theme/types';
+import { Maybe } from '#types';
+import Card from '#types/Card';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 interface Props {
+  editingCard: Maybe<Card>;
   show: boolean;
   onClose: () => void;
 }
 
-const CreateMemberModal = ({ show, onClose }: Props) => {
+const EditCardModal = ({ editingCard, show, onClose }: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const coloredStyles = useColoredStyles(styles);
 
-  const responseText = t('member_created');
+  const responseText = t('card_updated');
 
-  const onCreateMember = async (data: MemberFormInputs) => {
-    await dispatch(createMember(data, responseText));
+  const onUpdateCard = async (data: CardFormInputs) => {
+    console.log(data);
+    if (editingCard) await dispatch(updateCard(data, editingCard.id, responseText));
     onClose();
   };
 
@@ -33,9 +37,9 @@ const CreateMemberModal = ({ show, onClose }: Props) => {
       <KeyboardAwareScrollView style={coloredStyles.scroll}>
         <SafeAreaView style={coloredStyles.modalContent}>
           <Text type={TextTypes.H2} style={coloredStyles.sectionTitle}>
-            {t('create_member')}
+            {t('edit_card')}
           </Text>
-          <MemberForm onSubmit={onCreateMember} onCancel={onClose} />
+          {editingCard && <CardForm editingCard={editingCard} onSubmit={onUpdateCard} onCancel={onClose} />}
         </SafeAreaView>
       </KeyboardAwareScrollView>
     </ModalView>
@@ -54,7 +58,6 @@ const styles = (themeColors: ThemeColors) =>
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      height: '100%',
     },
     sectionTitle: {
       padding: 16,
@@ -62,4 +65,4 @@ const styles = (themeColors: ThemeColors) =>
     },
   });
 
-export default CreateMemberModal;
+export default EditCardModal;

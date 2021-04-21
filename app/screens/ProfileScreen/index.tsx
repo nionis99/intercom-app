@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Avatar from 'react-native-elements/dist/avatar/Avatar';
 
@@ -11,6 +11,7 @@ import LoadingView from '#components/LoadingView';
 import avatarSrc from '#assets/images/user.png';
 import { ThemeColors } from '#utils/theme/types';
 import { logout } from '#redux/actions/Authorization';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 function ProfileScreen() {
   const { t } = useTranslation();
@@ -29,7 +30,7 @@ function ProfileScreen() {
 
   return (
     <SafeAreaView style={styles.root}>
-      <ScrollView style={styles.scroll} contentContainerStyle={styles.contentContainer}>
+      <KeyboardAwareScrollView style={styles.scroll} contentContainerStyle={styles.contentContainer}>
         <Avatar size="xlarge" source={avatarSrc} containerStyle={styles.avatar} />
         {!!user && <ProfileForm user={user} />}
         <View style={styles.buttons}>
@@ -37,7 +38,7 @@ function ProfileScreen() {
             {t('log_out')}
           </Button>
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 }

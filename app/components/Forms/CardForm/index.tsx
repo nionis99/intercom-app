@@ -35,7 +35,7 @@ const cardSchema = yup.object().shape({
 
 interface Props {
   editingCard?: Card;
-  onSubmit: (data: CardFormInputs) => void;
+  onSubmit: (data: CardFormInputs) => Promise<void>;
   onCancel: () => void;
 }
 

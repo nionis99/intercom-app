@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
 import useColoredStyles from '#hooks/useColoredStyles';
 import MemberForm, { MemberFormInputs } from '#components/Forms/MemberForm';
@@ -11,6 +11,7 @@ import { updateMember } from '#redux/actions/Members';
 import { ThemeColors } from '#utils/theme/types';
 import { Maybe } from '#types';
 import Member from '#types/Member';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 interface Props {
   editingMember: Maybe<Member>;
@@ -32,14 +33,14 @@ const EditMemberModal = ({ editingMember, show, onClose }: Props) => {
 
   return (
     <ModalView show={show} onClose={onClose}>
-      <ScrollView style={coloredStyles.scroll}>
+      <KeyboardAwareScrollView style={coloredStyles.scroll}>
         <SafeAreaView style={coloredStyles.modalContent}>
           <Text type={TextTypes.H2} style={coloredStyles.sectionTitle}>
             {t('edit_member')}
           </Text>
           {editingMember && <MemberForm editingMember={editingMember} onSubmit={onUpdateMember} onCancel={onClose} />}
         </SafeAreaView>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </ModalView>
   );
 };

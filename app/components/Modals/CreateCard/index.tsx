@@ -1,13 +1,15 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
+import useColoredStyles from '#hooks/useColoredStyles';
 import ModalView from '#components/Modals';
 import CardForm, { CardFormInputs } from '#components/Forms/CardForm';
 import Text, { TextTypes } from '#components/Text';
 import { ThemeColors } from '#utils/theme/types';
-import useColoredStyles from '#hooks/useColoredStyles';
+import { createCard } from '#redux/actions/Cards';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 interface Props {
   show: boolean;
@@ -16,27 +18,26 @@ interface Props {
 
 const CreateCardModal = ({ show, onClose }: Props) => {
   const { t } = useTranslation();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const coloredStyles = useColoredStyles(styles);
 
-  // const responseText = t('card_created');
+  const responseText = t('card_created');
 
-  const onCreateCard = (data: CardFormInputs) => {
-    console.log(data);
-    // await dispatch(createMember(data, responseText));
+  const onCreateCard = async (data: CardFormInputs) => {
+    await dispatch(createCard(data, responseText));
     onClose();
   };
 
   return (
     <ModalView show={show} onClose={onClose}>
-      <ScrollView style={coloredStyles.scroll}>
+      <KeyboardAwareScrollView style={coloredStyles.scroll}>
         <SafeAreaView style={coloredStyles.modalContent}>
           <Text type={TextTypes.H2} style={coloredStyles.sectionTitle}>
             {t('create_card')}
           </Text>
           <CardForm onSubmit={onCreateCard} onCancel={onClose} />
         </SafeAreaView>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </ModalView>
   );
 };

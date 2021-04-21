@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -7,13 +7,16 @@ import { RouteProp } from '@react-navigation/native';
 import useColoredStyles from '#hooks/useColoredStyles';
 import Text, { TextTypes } from '#components/Text';
 import { ThemeColors } from '#utils/theme/types';
-import { getCards } from '#redux/actions/Cards';
+import { deleteCard, getCards } from '#redux/actions/Cards';
 import { MembersStackParamList } from '#navigation/AuthorizedStack/BottomTabs/MembersStack';
 import { useStateSelector } from '#hooks/useReduxStateSelector';
 import LoadingView from '#components/LoadingView';
 import CardsList from '#components/Lists/Cards';
 import { DEFAULT_MEMBER_NAME } from '#utils/constants';
 import Divider from '#components/Divider';
+import EditCardModal from '#components/Modals/EditCard';
+import Card from '#types/Card';
+import DeleteModal from '#components/Modals/DeleteModal';
 
 type MembersScreenRouteProps = RouteProp<MembersStackParamList, 'Member'>;
 
@@ -26,11 +29,21 @@ function MemberScreen({ route }: Props) {
   const { member } = route.params;
   const dispatch = useDispatch();
   const styles = useColoredStyles(coloredStyles);
-  const { cardsData, cardsLoading } = useStateSelector((state) => state.cards);
+  const [deletingCardId, setDeletingCardId] = useState<number | null>(null);
+  const [editingCard, setEditingCard] = useState<Card | null>(null);
+  const { cardsData, cardsLoading, deleteLoading } = useStateSelector((state) => state.cards);
+
+  const deleteResponseText = t('card_deleted');
 
   useEffect(() => {
     dispatch(getCards(member.id));
   }, [dispatch, member]);
+
+  const onDeleteCard = async () => {
+    console.log('trinti');
+    if (deletingCardId) await dispatch(deleteCard(deletingCardId, deleteResponseText));
+    setDeletingCardId(null);
+  };
 
   if (cardsLoading) return <LoadingView />;
 
@@ -52,7 +65,15 @@ function MemberScreen({ route }: Props) {
         </Text>
         <Divider />
       </View>
-      <CardsList cardsData={cardsData} setDeletingCardId={() => null} setEditingCard={() => null} />
+      <CardsList cardsData={cardsData} setDeletingCardId={setDeletingCardId} setEditingCard={setEditingCard} />
+      <EditCardModal editingCard={editingCard} show={!!editingCard} onClose={() => setEditingCard(null)} />
+      <DeleteModal
+        title={t('delete_card')}
+        show={!!deletingCardId}
+        onClose={() => setDeletingCardId(null)}
+        onDeleteModal={onDeleteCard}
+        isLoading={deleteLoading}
+      />
     </SafeAreaView>
   );
 }

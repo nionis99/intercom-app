@@ -1,4 +1,4 @@
-import React, { SetStateAction } from 'react';
+import React from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -10,24 +10,24 @@ import { ThemeColors } from '#utils/theme/types';
 
 interface Props {
   title: string;
-  isDeleteModalShown: boolean;
-  setDeletingMemberId: React.Dispatch<SetStateAction<number | null>>;
+  show: boolean;
+  onClose: () => void;
   onDeleteModal: () => Promise<void>;
   isLoading: boolean;
 }
 
-const DeleteMemberModal = ({ title, isDeleteModalShown, setDeletingMemberId, onDeleteModal, isLoading }: Props) => {
+const DeleteModal = ({ title, show, onClose, onDeleteModal, isLoading }: Props) => {
   const { t } = useTranslation();
   const styles = useColoredStyles(coloredStyles);
 
   return (
-    <ModalView show={isDeleteModalShown} onClose={() => setDeletingMemberId(null)}>
+    <ModalView show={show} onClose={onClose}>
       <SafeAreaView style={styles.modalRoot}>
         <Text type={TextTypes.H2} style={styles.modalText}>
           {title}
         </Text>
         <View style={styles.modalButtons}>
-          <Button type={ButtonType.SECONDARY} onPress={() => setDeletingMemberId(null)} style={styles.modalButton}>
+          <Button type={ButtonType.SECONDARY} onPress={onClose} style={styles.modalButton}>
             {t('cancel')}
           </Button>
           <Button onPress={onDeleteModal} style={styles.modalButton} type={ButtonType.DANGER} isLoading={isLoading}>
@@ -64,4 +64,4 @@ const coloredStyles = (themeColors: ThemeColors) =>
     },
   });
 
-export default DeleteMemberModal;
+export default DeleteModal;

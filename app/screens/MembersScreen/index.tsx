@@ -8,10 +8,10 @@ import { useStateSelector } from '#hooks/useReduxStateSelector';
 import { deleteMember, getMembers } from '#redux/actions/Members';
 import useColoredStyles from '#hooks/useColoredStyles';
 import LoadingView from '#components/LoadingView';
-import DeleteMemberModal from '#components/Modals/DeleteMemberModal';
-import { ThemeColors } from '#utils/theme/types';
+import DeleteModal from '#components/Modals/DeleteModal';
 import MembersList from '#components/Lists/Members';
 import EditMemberModal from '#components/Modals/EditMember';
+import { ThemeColors } from '#utils/theme/types';
 import Member from '#types/Member';
 
 function MembersScreen() {
@@ -43,10 +43,10 @@ function MembersScreen() {
         setDeletingMemberId={setDeletingMemberId}
         setEditingMember={setEditingMember}
       />
-      <DeleteMemberModal
+      <DeleteModal
         title={t('delete_member')}
-        isDeleteModalShown={!!deletingMemberId}
-        setDeletingMemberId={setDeletingMemberId}
+        show={!!deletingMemberId}
+        onClose={() => setDeletingMemberId(null)}
         onDeleteModal={onDeleteMember}
         isLoading={deleteLoading}
       />
