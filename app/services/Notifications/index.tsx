@@ -17,7 +17,7 @@ const Notifications = ({ children }: Props) => {
     if (user) {
       requestUserPermission();
 
-      return messaging().onMessage(onMessage);
+      return messaging().onMessage(onMessage); // Foreground message handler
     }
   }, [requestUserPermission, user]);
 

@@ -23,6 +23,7 @@
     "member_created": "User was created!",
     "member_updated": "User data was updated!",
     "delete_card": "Delete current card?",
+    "create_card": "Create card",
     "edit_card": "Edit card",
     "card_deleted": "Card was deleted!",
     "card_created": "Card was created!",

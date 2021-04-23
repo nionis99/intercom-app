@@ -4,20 +4,20 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { RouteProp } from '@react-navigation/native';
 
-import useColoredStyles from '#hooks/useColoredStyles';
-import Text, { TextTypes } from '#components/Text';
-import { ThemeColors } from '#utils/theme/types';
-import { deleteCard, getCards } from '#redux/actions/Cards';
 import { MembersStackParamList } from '#navigation/AuthorizedStack/BottomTabs/MembersStack';
 import { useStateSelector } from '#hooks/useReduxStateSelector';
+import useColoredStyles from '#hooks/useColoredStyles';
+import Divider from '#components/Divider';
 import LoadingView from '#components/LoadingView';
 import CardsList from '#components/Lists/Cards';
-import { DEFAULT_MEMBER_NAME } from '#utils/constants';
-import Divider from '#components/Divider';
+import MemberInfo from '#components/MemberInfo';
 import EditCardModal from '#components/Modals/EditCard';
-import Card from '#types/Card';
 import DeleteModal from '#components/Modals/DeleteModal';
 import { getCardTypes } from '#redux/actions/CardTypes';
+import { deleteCard, getCards } from '#redux/actions/Cards';
+import { DEFAULT_MEMBER_NAME } from '#utils/constants';
+import { ThemeColors } from '#utils/theme/types';
+import Card from '#types/Card';
 
 export type MembersScreenRouteProps = RouteProp<MembersStackParamList, 'Member'>;
 
@@ -53,22 +53,18 @@ function MemberScreen({ route }: Props) {
 
   return (
     <View style={styles.root}>
-      <View style={styles.memberInfo}>
-        <Divider />
-        <Text type={TextTypes.H4} style={styles.memberInfoText}>
-          {t('name')} : {member.name || t(DEFAULT_MEMBER_NAME)}
-        </Text>
-        <Text type={TextTypes.H4} style={styles.memberInfoText}>
-          {t('email')} : {member.email || '-'}
-        </Text>
-        <Text type={TextTypes.H4} style={styles.memberInfoText}>
-          {t('phone')} : {member.phone || '-'}
-        </Text>
-        <Text type={TextTypes.H4} style={styles.memberInfoText}>
-          {t('pin')} : {member.pin || '-'}
-        </Text>
-        <Divider />
+      <View>
+        {/* style={{ width: '100%', display: 'flex', flexDirection: 'row' }}*/}
+        <View style={styles.memberInfoContainer}>
+          <MemberInfo materialIconName="account-circle" text={member.name || t(DEFAULT_MEMBER_NAME)} />
+          <MemberInfo materialIconName="local-phone" text={member.phone || '-'} />
+        </View>
+        <View style={styles.memberInfoContainer}>
+          <MemberInfo materialIconName="email" text={member.email || '-'} />
+          <MemberInfo materialIconName="fiber-pin" text={member.pin || '-'} />
+        </View>
       </View>
+      <Divider />
       <CardsList cardsData={cardsData} setDeletingCardId={setDeletingCardId} setEditingCard={setEditingCard} />
       <EditCardModal editingCard={editingCard} show={!!editingCard} onClose={() => setEditingCard(null)} />
       <DeleteModal
@@ -88,13 +84,14 @@ const coloredStyles = (themeColors: ThemeColors) =>
       flex: 1,
       backgroundColor: themeColors.background,
     },
-    memberInfo: {
+    memberInfoContainer: {
+      width: '50%',
       display: 'flex',
+      flexDirection: 'column',
+      height: 150,
       justifyContent: 'center',
-      alignItems: 'center',
-    },
-    memberInfoText: {
-      marginVertical: 8,
+      alignItems: 'flex-start',
+      margin: 16,
     },
   });
 

@@ -16,12 +16,11 @@ Sentry.init({
 
 PushNotification.configure({
   onRegister: async ({ token }) => {
-    console.log(token);
     await saveDeviceToken(token);
     createDefaultChannels();
   },
   onRegistrationError: (err) => console.error(err.message, err),
-  // senderID: '749004869698',
+  senderID: '749004869698',
   permissions: {
     alert: true,
     badge: true,
@@ -32,7 +31,7 @@ PushNotification.configure({
 });
 
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-  console.log('Message handled in the background!', remoteMessage);
+  console.log('Message handled in the background!', remoteMessage); //Background message handler
 });
 
 AppRegistry.registerComponent(appName, () => App);
