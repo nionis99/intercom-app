@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { ThemeColors } from '#utils/theme/types';
-import useColoredStyles from 'app/hooks/useColoredStyles';
+import useColoredStyles from '#hooks/useColoredStyles';
 
 export enum DividerSpacings {
   SM = 'SM',

@@ -6,12 +6,13 @@ import { Theme, useNavigation } from '@react-navigation/native';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
 import EvilIcon from 'react-native-vector-icons/EvilIcons';
 
-import useColoredStyles from '#hooks/useColoredStyles';
 import { useAppState } from '#contexts/AppContext';
+import useColoredStyles from '#hooks/useColoredStyles';
+import Text, { FontWeight, TextTypes } from '#components/Text';
 import { DEFAULT_MEMBER_NAME } from '#utils/constants';
 import { ThemeColors } from '#utils/theme/types';
-import Member from '#types/Member';
 import avatarSrc from '#assets/images/user.png';
+import Member from '#types/Member';
 
 interface Props {
   membersData: Member[];
@@ -35,11 +36,16 @@ const MembersList = ({ membersData, setDeletingMemberId, setEditingMember }: Pro
             <FAIcon name="circle" color={member.is_active ? theme.colors.lightGreen : theme.colors.danger} size={20} />
             <Avatar source={avatarSrc} />
             <ListItem.Content>
-              <ListItem.Title style={styles.listTitle}>{member.name || t(DEFAULT_MEMBER_NAME)}</ListItem.Title>
-
+              <ListItem.Title style={styles.listTitle}>
+                <Text type={TextTypes.H2} weight={FontWeight.NORMAL}>
+                  {member.name || t(DEFAULT_MEMBER_NAME)}
+                </Text>
+              </ListItem.Title>
               {member.pin && (
                 <ListItem.Subtitle style={styles.listSubtitle}>
-                  {t('pin')}: {member.pin}
+                  <Text type={TextTypes.H3} weight={FontWeight.LIGHT}>
+                    {t('pin')}: {member.pin}
+                  </Text>
                 </ListItem.Subtitle>
               )}
             </ListItem.Content>

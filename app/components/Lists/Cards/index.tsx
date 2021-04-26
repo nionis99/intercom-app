@@ -9,7 +9,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import useColoredStyles from '#hooks/useColoredStyles';
 import { useAppState } from '#contexts/AppContext';
 import EmptyDataView from '#components/EmptyData';
-import { Text, TextTypes } from '#components/Text';
+import { FontWeight, Text, TextTypes } from '#components/Text';
 import { ThemeColors } from '#utils/theme/types';
 import Card from '#types/Card';
 
@@ -34,12 +34,12 @@ const CardsList = ({ cardsData, setDeletingCardId, setEditingCard }: Props) => {
           <ListItem.Content>
             <View style={styles.title}>
               <MaterialIcon name="smart-card" size={20} color={theme.colors.primary} style={styles.cardIcon} />
-              <Text style={styles.titleText} type={TextTypes.H2}>
+              <Text style={styles.titleText} type={TextTypes.H2} weight={FontWeight.NORMAL}>
                 {card.card_no}
               </Text>
             </View>
             {!!card.note && (
-              <Text type={TextTypes.H4}>
+              <Text type={TextTypes.H2} weight={FontWeight.LIGHT}>
                 {t('note')} : {card.note}
               </Text>
             )}
