@@ -25,12 +25,12 @@ const MembersList = ({ membersData, setDeletingMemberId, setEditingMember }: Pro
   const navigation = useNavigation();
   const styles = useColoredStyles(coloredStyles, theme);
 
-  const navigateToMember = (member: Member) => navigation.navigate('Member', { member });
+  const navigateToMember = (memberId: number) => navigation.navigate('Member', { memberId });
 
   return (
     <ScrollView style={styles.scroll} contentContainerStyle={styles.contentContainer}>
       {membersData.map((member) => (
-        <TouchableOpacity onPress={() => navigateToMember(member)} key={member.id}>
+        <TouchableOpacity onPress={() => navigateToMember(member.id)} key={member.id}>
           <ListItem bottomDivider containerStyle={styles.listContainer}>
             <FAIcon name="circle" color={member.is_active ? theme.colors.lightGreen : theme.colors.danger} size={20} />
             <Avatar source={avatarSrc} />

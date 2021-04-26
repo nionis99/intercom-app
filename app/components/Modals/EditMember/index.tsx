@@ -2,16 +2,17 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, StyleSheet } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import useColoredStyles from '#hooks/useColoredStyles';
 import MemberForm, { MemberFormInputs } from '#components/Forms/MemberForm';
 import ModalView from '#components/Modals';
 import Text, { TextTypes } from '#components/Text';
+import { updateMemberData } from '#redux/actions/Member';
 import { updateMember } from '#redux/actions/Members';
 import { ThemeColors } from '#utils/theme/types';
 import { Maybe } from '#types';
 import Member from '#types/Member';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 interface Props {
   editingMember: Maybe<Member>;
@@ -27,7 +28,10 @@ const EditMemberModal = ({ editingMember, show, onClose }: Props) => {
   const responseText = t('member_updated');
 
   const onUpdateMember = async (data: MemberFormInputs) => {
-    if (editingMember) await dispatch(updateMember(data, editingMember.id, responseText));
+    if (editingMember) {
+      await dispatch(updateMemberData(data, editingMember.id, responseText));
+      await dispatch(updateMember(data, editingMember.id, responseText));
+    }
     onClose();
   };
 

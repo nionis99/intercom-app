@@ -85,8 +85,8 @@ const sizeStyles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   [ButtonSize.LARGE]: {
-    paddingVertical: 12,
-    paddingHorizontal: 34,
+    paddingVertical: 16,
+    paddingHorizontal: 32,
   },
 });
 

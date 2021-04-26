@@ -38,6 +38,8 @@ const memberSchema = yup.object().shape({
     .string()
     .required('required_pin_code')
     .matches(/^[0-9]*$/, 'pin_format')
+    .min(4, 'min_pin')
+    .max(8, 'max_pin')
     .trim(),
 });
 

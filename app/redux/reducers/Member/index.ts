@@ -1,19 +1,16 @@
 import {
   MEMBER_DATA,
   MEMBER_LOADING,
-  // MEMBER_CONTACTS_LOADING,
-  // MEMBER_CONTACTS_DATA,
-  // MEMBER_PIN_DATA,
-  // MEMBER_PIN_LOADING,
+  EDIT_MEMBER_LOADING,
+  EDIT_MEMBER_DATA,
   MemberActionTypes,
   MemberStateType,
 } from '#redux/types/MemberTypes';
-// import Member from '#types/Member';
+import Member from '#types/Member';
 
 const initialStateMember: MemberStateType = {
   memberLoading: false,
-  memberContactsLoading: false,
-  memberPinLoading: false,
+  editMemberLoading: false,
   memberData: null,
 };
 
@@ -29,26 +26,16 @@ export const MemberReducer = (state = initialStateMember, action: MemberActionTy
         ...state,
         memberData: action.memberData,
       };
-    // case MEMBER_CONTACTS_LOADING:
-    //   return {
-    //     ...state,
-    //     memberContactsLoading: action.loading,
-    //   };
-    // case MEMBER_CONTACTS_DATA:
-    //   return {
-    //     ...state,
-    //     memberData: { ...state.memberData, ...action.memberContacts } as Member,
-    //   };
-    // case MEMBER_PIN_LOADING:
-    //   return {
-    //     ...state,
-    //     memberPinLoading: action.loading,
-    //   };
-    // case MEMBER_PIN_DATA:
-    //   return {
-    //     ...state,
-    //     memberData: { ...state.memberData, ...action.memberPin } as Member,
-    //   };
+    case EDIT_MEMBER_LOADING:
+      return {
+        ...state,
+        editMemberLoading: action.loading,
+      };
+    case EDIT_MEMBER_DATA:
+      return {
+        ...state,
+        memberData: { ...state.memberData, ...action.memberData } as Member,
+      };
     default:
       return state;
   }

@@ -56,7 +56,10 @@
     "pin": "PIN kodas",
     "required_pin_code": "PIN kodas privalomas",
     "pin_format": "Pin kodas turi būti tik iš skaitmenų",
+    "min_pin": "PIN kodas turi būti mažiausiai 4 skaitmenų",
+    "max_pin": "PIN kodą turi sudaryti ne daugiau kaip 8 skaitmenys",
     "name": "Vardas",
-    "no_internet": "Nėra interneto ryšio"
+    "no_internet": "Nėra interneto ryšio",
+    "no_cards": "Nėra priskirtų kortelių"
   }
 }

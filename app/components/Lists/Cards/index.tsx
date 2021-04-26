@@ -32,12 +32,12 @@ const CardsList = ({ cardsData, setDeletingCardId, setEditingCard }: Props) => {
       renderItem={({ item: card }) => (
         <ListItem bottomDivider containerStyle={styles.listContainer} key={card.id}>
           <ListItem.Content>
-            <ListItem.Title style={styles.listTitle}>
-              {card.card_no}
-              <View>
-                <MaterialIcon name="smart-card" size={20} color={theme.colors.primary} style={styles.cardIcon} />
-              </View>
-            </ListItem.Title>
+            <View style={styles.title}>
+              <MaterialIcon name="smart-card" size={20} color={theme.colors.primary} style={styles.cardIcon} />
+              <Text style={styles.titleText} type={TextTypes.H2}>
+                {card.card_no}
+              </Text>
+            </View>
             {!!card.note && (
               <Text type={TextTypes.H4}>
                 {t('note')} : {card.note}
@@ -83,13 +83,24 @@ const coloredStyles = (themeColors: ThemeColors, theme: Theme) =>
       textAlign: 'center',
       color: theme.dark ? themeColors.white : themeColors.black,
     },
+    title: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    titleText: {
+      display: 'flex',
+      justifyContent: 'center',
+      textAlignVertical: 'center',
+    },
     listSubtitle: { color: themeColors.midGrey },
     actions: {
       display: 'flex',
       flexDirection: 'row',
     },
     cardIcon: {
-      marginLeft: 8,
+      marginRight: 8,
     },
     editIcon: {
       marginHorizontal: 16,

@@ -56,7 +56,10 @@
     "pin": "PIN code",
     "required_pin_code": "PIN code is required",
     "pin_format": "Pin code must be only digits",
+    "min_pin": "Pin code must be minimum 4 digits",
+    "max_pin": "Pin code must be maximum 8 digits",
     "name": "Name",
-    "no_internet": "No internet connection"
+    "no_internet": "No internet connection",
+    "no_cards": "No cards"
   }
 }

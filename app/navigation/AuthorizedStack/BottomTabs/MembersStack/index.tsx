@@ -6,11 +6,10 @@ import MembersHeaderRightButton from '#components/Buttons/MembersHeaderRight';
 import MemberHeaderRightButton from '#components/Buttons/MemberHeaderRight';
 import LogoTitle from '#components/LogoTitle';
 import MemberScreen from '#screens/MemberScreen';
-import Member from '#types/Member';
 
 export type MembersStackParamList = {
   Members: undefined;
-  Member: { member: Member };
+  Member: { memberId: number };
 };
 
 function MembersStack() {

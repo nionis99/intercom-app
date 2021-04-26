@@ -16,7 +16,7 @@ const MemberInfo = ({ materialIconName, text }: Props) => {
   return (
     <View style={styles.memberInfoView}>
       <MaterialIcon name={materialIconName} size={24} color={theme.colors.primary} />
-      <Text type={TextTypes.H2} weight={FontWeight.BOLD} style={styles.memberInfoText}>
+      <Text type={TextTypes.H2} weight={FontWeight.BOLD} style={styles.memberInfoText} numberOfLines={1}>
         {text}
       </Text>
     </View>

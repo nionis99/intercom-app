@@ -74,7 +74,7 @@ const CardForm = ({ editingCard, onSubmit, onCancel }: Props) => {
   const onFormSubmit = (data: CardFormInputs) =>
     onSubmit({
       ...data,
-      account_id: routeParams.member.id,
+      account_id: routeParams.memberId,
       type: cardType,
       type_id: parseInt(cardTypeId, 0),
     });
